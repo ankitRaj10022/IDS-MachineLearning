@@ -14,7 +14,7 @@ from . import product_terminal
 class IDSProductGUI:
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
-        self.root.title("IDS Product Terminal")
+        self.root.title("IDS Sentinel Terminal")
         self.root.geometry("1180x760")
         self.root.minsize(920, 620)
         self.output_queue: queue.Queue[str] = queue.Queue()
@@ -44,7 +44,7 @@ class IDSProductGUI:
         main.columnconfigure(0, weight=1)
         main.rowconfigure(1, weight=1)
 
-        ttk.Label(sidebar, text="IDS Console", font=("Segoe UI", 16, "bold")).pack(anchor="w", pady=(0, 12))
+        ttk.Label(sidebar, text="IDS Sentinel", font=("Segoe UI", 16, "bold")).pack(anchor="w", pady=(0, 12))
         for label, command in [
             ("Status", ["status"]),
             ("Traffic", ["traffic"]),
@@ -164,7 +164,7 @@ class IDSProductGUI:
         self.run_command(args)
 
     def run_command(self, args: list[str]) -> None:
-        self._append(f"\n$ ids-firewall {' '.join(args)}\n")
+        self._append(f"\n$ ids-sentinel-terminal {' '.join(args)}\n")
         thread = threading.Thread(target=self._run_command_worker, args=(args,), daemon=True)
         thread.start()
 

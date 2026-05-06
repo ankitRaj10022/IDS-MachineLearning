@@ -959,7 +959,7 @@ def show_cache(json_output: bool = False, limit: int = 40) -> None:
     if json_output:
         print_json(payload)
         return
-    section("Product Cache")
+    section("IDS Sentinel Terminal Cache")
     print(f"Cache:   {payload['cache_dir']}")
     print(f"Indexes: {payload['index_dir']}")
     print(f"Runs:    {payload['command_cache_dir']}")
@@ -1010,7 +1010,7 @@ def import_csv(source: Path, name: str | None = None) -> Path:
     if not source.exists() or not source.is_file():
         raise ValueError(f"not a file: {source}")
     if source.suffix.lower() != ".csv":
-        raise ValueError("only CSV imports are supported in this product terminal")
+        raise ValueError("only CSV imports are supported in IDS Sentinel Terminal")
     safe_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", name or source.name)
     if not safe_name.lower().endswith(".csv"):
         safe_name += ".csv"
@@ -1686,7 +1686,7 @@ def show_status(json_output: bool = False) -> None:
         print_json(payload)
         return
 
-    section("IDS Product Terminal Status")
+    section("IDS Sentinel Terminal Status")
     dataset_rows = []
     for name, item in payload["datasets"].items():
         dataset_rows.append(
@@ -1951,10 +1951,10 @@ def parse_limit(value: str | None, default: int | None) -> int | None:
 
 def command_shell() -> None:
     ensure_product_dirs()
-    print("IDS Product Terminal. Type 'help' for commands, 'exit' to quit.")
+    print("IDS Sentinel Terminal. Type 'help' for commands, 'exit' to quit.")
     while True:
         try:
-            raw = input("ids-firewall> ").strip()
+            raw = input("ids-sentinel> ").strip()
         except EOFError:
             print()
             return
@@ -2118,11 +2118,11 @@ def run_shell_command(raw: str) -> bool:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="IDS firewall-like product terminal for CSV traffic analysis.")
+    parser = argparse.ArgumentParser(description="IDS Sentinel Terminal for defensive CSV traffic analysis and local triage.")
     parser.add_argument("--json", action="store_true", help="Print JSON for commands that support it.")
     subparsers = parser.add_subparsers(dest="command")
 
-    subparsers.add_parser("shell", help="Open the interactive product terminal.")
+    subparsers.add_parser("shell", help="Open IDS Sentinel Terminal interactive mode.")
     subparsers.add_parser("gui", help="Open the graphical product console.")
     subparsers.add_parser("status", help="Show product status.")
     subparsers.add_parser("traffic", help="Show traffic data.")

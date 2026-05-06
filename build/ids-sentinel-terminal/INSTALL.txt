@@ -1,0 +1,11 @@
+IDS Sentinel Terminal
+
+Windows:
+  ids-sentinel-terminal.cmd status
+  ids-sentinel-terminal-gui.cmd
+
+macOS/Linux:
+  ./ids-sentinel-terminal status
+  ./ids-sentinel-terminal-gui
+
+Read README.md for the full manual.

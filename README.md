@@ -1,4 +1,4 @@
-# IDS Product Terminal
+# IDS Sentinel Terminal
 
 This repository contains an Intrusion Detection System product terminal built around the bundled IDS CSV datasets. The main Windows product entrypoint is `terminal.cmd`. It works without Conda, Docker, pandas, scikit-learn, or TensorFlow, so a user can inspect traffic data and generate reports with the Python already available on this machine.
 
@@ -121,10 +121,10 @@ exit
 Portable downloadable archives are generated under `dist/`:
 
 ```text
-dist/ids-firewall-tool-windows.zip
-dist/ids-firewall-tool-macos.tar.gz
-dist/ids-firewall-tool-linux.tar.gz
-dist/ids-firewall-tool-portable.zip
+dist/ids-sentinel-terminal-windows.zip
+dist/ids-sentinel-terminal-macos.tar.gz
+dist/ids-sentinel-terminal-linux.tar.gz
+dist/ids-sentinel-terminal-portable.zip
 ```
 
 Build or rebuild them from the repository root:
@@ -136,11 +136,11 @@ python scripts\build_distributions.py
 The archives contain:
 
 ```text
-ids-firewall.pyz
-ids-firewall.cmd
-ids-firewall-gui.cmd
-ids-firewall
-ids-firewall-gui
+ids-sentinel-terminal.pyz
+ids-sentinel-terminal.cmd
+ids-sentinel-terminal-gui.cmd
+ids-sentinel-terminal
+ids-sentinel-terminal-gui
 kddtrain.csv
 kddtest.csv
 README.md
@@ -151,21 +151,21 @@ automation/product/self_learning_model.json
 Windows users:
 
 ```powershell
-ids-firewall.cmd status
-ids-firewall.cmd scan kddtest.csv --limit 5000
-ids-firewall-gui.cmd
+ids-sentinel-terminal.cmd status
+ids-sentinel-terminal.cmd scan kddtest.csv --limit 5000
+ids-sentinel-terminal-gui.cmd
 ```
 
 macOS and Linux users:
 
 ```bash
-chmod +x ./ids-firewall ./ids-firewall-gui
-./ids-firewall status
-./ids-firewall scan kddtest.csv --limit 5000
-./ids-firewall-gui
+chmod +x ./ids-sentinel-terminal ./ids-sentinel-terminal-gui
+./ids-sentinel-terminal status
+./ids-sentinel-terminal scan kddtest.csv --limit 5000
+./ids-sentinel-terminal-gui
 ```
 
-These portable builds require Python 3 on the target machine. The application logic is packaged as a Python zipapp (`ids-firewall.pyz`) using only standard-library code.
+These portable builds require Python 3 on the target machine. The application logic is packaged as a Python zipapp (`ids-sentinel-terminal.pyz`) using only standard-library code.
 
 ### Native Binary Builds
 

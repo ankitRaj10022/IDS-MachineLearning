@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+set -eu
+DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+export IDS_PRODUCT_HOME="$DIR"
+exec python3 "$DIR/ids-sentinel-terminal.pyz" gui "$@"

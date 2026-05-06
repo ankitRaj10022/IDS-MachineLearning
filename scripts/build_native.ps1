@@ -11,7 +11,7 @@ $env:IDS_PRODUCT_HOME = $root
 pyinstaller `
   --noconfirm `
   --clean `
-  --name ids-firewall `
+  --name ids-sentinel-terminal `
   --add-data "kddtrain.csv;." `
   --add-data "kddtest.csv;." `
   --add-data "README.md;." `
@@ -19,4 +19,4 @@ pyinstaller `
   --collect-submodules ids_app `
   ids_app\product_app.py
 
-Write-Host "Native build output: dist\ids-firewall"
+Write-Host "Native build output: dist\ids-sentinel-terminal"

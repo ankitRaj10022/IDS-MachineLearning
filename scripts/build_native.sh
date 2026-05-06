@@ -13,7 +13,7 @@ export IDS_PRODUCT_HOME="${ROOT_DIR}"
 pyinstaller \
   --noconfirm \
   --clean \
-  --name ids-firewall \
+  --name ids-sentinel-terminal \
   --add-data "kddtrain.csv:." \
   --add-data "kddtest.csv:." \
   --add-data "README.md:." \
@@ -21,4 +21,4 @@ pyinstaller \
   --collect-submodules ids_app \
   ids_app/product_app.py
 
-echo "Native build output: dist/ids-firewall"
+echo "Native build output: dist/ids-sentinel-terminal"

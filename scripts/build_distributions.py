@@ -12,9 +12,12 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BUILD_DIR = ROOT / "build" / "ids-firewall"
+BUILD_DIR = ROOT / "build" / "ids-sentinel-terminal"
 DIST_DIR = ROOT / "dist"
-PACKAGE_NAME = "ids-firewall-tool"
+PACKAGE_NAME = "ids-sentinel-terminal"
+APP_PYZ = "ids-sentinel-terminal.pyz"
+CLI_NAME = "ids-sentinel-terminal"
+GUI_NAME = "ids-sentinel-terminal-gui"
 
 
 def copy_tree(source: Path, target: Path) -> None:
@@ -41,7 +44,7 @@ def prepare_stage(include_exports: bool = False) -> Path:
 
     app_src = BUILD_DIR / "pyz_src"
     copy_tree(ROOT / "ids_app", app_src / "ids_app")
-    zipapp.create_archive(app_src, BUILD_DIR / "ids-firewall.pyz", main="ids_app.product_app:main", interpreter="/usr/bin/env python3")
+    zipapp.create_archive(app_src, BUILD_DIR / APP_PYZ, main="ids_app.product_app:main", interpreter="/usr/bin/env python3")
 
     for filename in ("README.md", "kddtrain.csv", "kddtest.csv"):
         source = ROOT / filename
@@ -70,19 +73,19 @@ def prepare_stage(include_exports: bool = False) -> Path:
 
 def write_launchers(stage: Path) -> None:
     write_text(
-        stage / "ids-firewall.cmd",
+        stage / f"{CLI_NAME}.cmd",
         """@echo off
 setlocal
 cd /d "%~dp0"
 set "IDS_PRODUCT_HOME=%CD%"
 where py >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
-  py -3 "%~dp0ids-firewall.pyz" %*
+  py -3 "%~dp0ids-sentinel-terminal.pyz" %*
   exit /b %ERRORLEVEL%
 )
 where python >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
-  python "%~dp0ids-firewall.pyz" %*
+  python "%~dp0ids-sentinel-terminal.pyz" %*
   exit /b %ERRORLEVEL%
 )
 echo Python 3 was not found. Install Python 3 and rerun this command. 1>&2
@@ -90,44 +93,44 @@ exit /b 1
 """,
     )
     write_text(
-        stage / "ids-firewall-gui.cmd",
+        stage / f"{GUI_NAME}.cmd",
         """@echo off
 setlocal
 cd /d "%~dp0"
-call "%~dp0ids-firewall.cmd" gui
+call "%~dp0ids-sentinel-terminal.cmd" gui
 """,
     )
     write_text(
-        stage / "ids-firewall",
+        stage / CLI_NAME,
         """#!/usr/bin/env sh
 set -eu
 DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 export IDS_PRODUCT_HOME="$DIR"
-exec python3 "$DIR/ids-firewall.pyz" "$@"
+exec python3 "$DIR/ids-sentinel-terminal.pyz" "$@"
 """,
         executable=True,
     )
     write_text(
-        stage / "ids-firewall-gui",
+        stage / GUI_NAME,
         """#!/usr/bin/env sh
 set -eu
 DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 export IDS_PRODUCT_HOME="$DIR"
-exec python3 "$DIR/ids-firewall.pyz" gui "$@"
+exec python3 "$DIR/ids-sentinel-terminal.pyz" gui "$@"
 """,
         executable=True,
     )
     write_text(
         stage / "INSTALL.txt",
-        """IDS Firewall Tool
+        """IDS Sentinel Terminal
 
 Windows:
-  ids-firewall.cmd status
-  ids-firewall-gui.cmd
+  ids-sentinel-terminal.cmd status
+  ids-sentinel-terminal-gui.cmd
 
 macOS/Linux:
-  ./ids-firewall status
-  ./ids-firewall-gui
+  ./ids-sentinel-terminal status
+  ./ids-sentinel-terminal-gui
 
 Read README.md for the full manual.
 """,
@@ -166,7 +169,7 @@ def build_archives(include_exports: bool = False) -> list[Path]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build cross-platform IDS Firewall Tool archives.")
+    parser = argparse.ArgumentParser(description="Build cross-platform IDS Sentinel Terminal archives.")
     parser.add_argument("--include-exports", action="store_true", help="Bundle generated analysis reports too.")
     args = parser.parse_args()
     targets = build_archives(include_exports=args.include_exports)
