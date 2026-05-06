@@ -1,0 +1,281 @@
+{
+  "created_at": "2026-05-06T04:44:51+00:00",
+  "kind": "ports",
+  "payload": [
+    {
+      "proto": "UDP",
+      "local": "0.0.0.0:53",
+      "local_host": "0.0.0.0",
+      "local_port": 53,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "11496"
+    },
+    {
+      "proto": "UDP",
+      "local": "0.0.0.0:123",
+      "local_host": "0.0.0.0",
+      "local_port": 123,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "23892"
+    },
+    {
+      "proto": "UDP",
+      "local": "[::]:123",
+      "local_host": "::",
+      "local_port": 123,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "23892"
+    },
+    {
+      "proto": "TCP",
+      "local": "0.0.0.0:135",
+      "local_host": "0.0.0.0",
+      "local_port": 135,
+      "remote": "0.0.0.0:0",
+      "remote_host": "0.0.0.0",
+      "remote_port": 0,
+      "state": "LISTENING",
+      "pid": "1760"
+    },
+    {
+      "proto": "TCP",
+      "local": "[::]:135",
+      "local_host": "::",
+      "local_port": 135,
+      "remote": "[::]:0",
+      "remote_host": "::",
+      "remote_port": 0,
+      "state": "LISTENING",
+      "pid": "1760"
+    },
+    {
+      "proto": "UDP",
+      "local": "10.96.13.72:137",
+      "local_host": "10.96.13.72",
+      "local_port": 137,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "4"
+    },
+    {
+      "proto": "UDP",
+      "local": "172.25.144.1:137",
+      "local_host": "172.25.144.1",
+      "local_port": 137,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "4"
+    },
+    {
+      "proto": "UDP",
+      "local": "10.96.13.72:138",
+      "local_host": "10.96.13.72",
+      "local_port": 138,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "4"
+    },
+    {
+      "proto": "UDP",
+      "local": "172.25.144.1:138",
+      "local_host": "172.25.144.1",
+      "local_port": 138,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "4"
+    },
+    {
+      "proto": "TCP",
+      "local": "10.96.13.72:139",
+      "local_host": "10.96.13.72",
+      "local_port": 139,
+      "remote": "0.0.0.0:0",
+      "remote_host": "0.0.0.0",
+      "remote_port": 0,
+      "state": "LISTENING",
+      "pid": "4"
+    },
+    {
+      "proto": "TCP",
+      "local": "172.25.144.1:139",
+      "local_host": "172.25.144.1",
+      "local_port": 139,
+      "remote": "0.0.0.0:0",
+      "remote_host": "0.0.0.0",
+      "remote_port": 0,
+      "state": "LISTENING",
+      "pid": "4"
+    },
+    {
+      "proto": "TCP",
+      "local": "0.0.0.0:445",
+      "local_host": "0.0.0.0",
+      "local_port": 445,
+      "remote": "0.0.0.0:0",
+      "remote_host": "0.0.0.0",
+      "remote_port": 0,
+      "state": "LISTENING",
+      "pid": "4"
+    },
+    {
+      "proto": "TCP",
+      "local": "[::]:445",
+      "local_host": "::",
+      "local_port": 445,
+      "remote": "[::]:0",
+      "remote_host": "::",
+      "remote_port": 0,
+      "state": "LISTENING",
+      "pid": "4"
+    },
+    {
+      "proto": "TCP",
+      "local": "127.0.0.1:1042",
+      "local_host": "127.0.0.1",
+      "local_port": 1042,
+      "remote": "0.0.0.0:0",
+      "remote_host": "0.0.0.0",
+      "remote_port": 0,
+      "state": "LISTENING",
+      "pid": "16708"
+    },
+    {
+      "proto": "TCP",
+      "local": "127.0.0.1:1043",
+      "local_host": "127.0.0.1",
+      "local_port": 1043,
+      "remote": "0.0.0.0:0",
+      "remote_host": "0.0.0.0",
+      "remote_port": 0,
+      "state": "LISTENING",
+      "pid": "16708"
+    },
+    {
+      "proto": "UDP",
+      "local": "10.96.13.72:1900",
+      "local_host": "10.96.13.72",
+      "local_port": 1900,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "20692"
+    },
+    {
+      "proto": "UDP",
+      "local": "127.0.0.1:1900",
+      "local_host": "127.0.0.1",
+      "local_port": 1900,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "20692"
+    },
+    {
+      "proto": "UDP",
+      "local": "172.25.144.1:1900",
+      "local_host": "172.25.144.1",
+      "local_port": 1900,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "20692"
+    },
+    {
+      "proto": "UDP",
+      "local": "[::1]:1900",
+      "local_host": "::1",
+      "local_port": 1900,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "20692"
+    },
+    {
+      "proto": "UDP",
+      "local": "[fe80::c358:a759:7b32:6aab%5]:1900",
+      "local_host": "fe80::c358:a759:7b32:6aab%5",
+      "local_port": 1900,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "20692"
+    },
+    {
+      "proto": "UDP",
+      "local": "[fe80::fb70:9856:665f:8fd2%45]:1900",
+      "local_host": "fe80::fb70:9856:665f:8fd2%45",
+      "local_port": 1900,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "20692"
+    },
+    {
+      "proto": "UDP",
+      "local": "10.96.13.72:2177",
+      "local_host": "10.96.13.72",
+      "local_port": 2177,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "42164"
+    },
+    {
+      "proto": "UDP",
+      "local": "172.25.144.1:2177",
+      "local_host": "172.25.144.1",
+      "local_port": 2177,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "42164"
+    },
+    {
+      "proto": "UDP",
+      "local": "[2402:8100:265a:3539:3692:36c8:10ab:34f4]:2177",
+      "local_host": "2402:8100:265a:3539:3692:36c8:10ab:34f4",
+      "local_port": 2177,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "42164"
+    },
+    {
+      "proto": "UDP",
+      "local": "[2402:8100:265a:3539:ac61:597b:b26:3197]:2177",
+      "local_host": "2402:8100:265a:3539:ac61:597b:b26:3197",
+      "local_port": 2177,
+      "remote": "*:*",
+      "remote_host": "*",
+      "remote_port": null,
+      "state": "UDP",
+      "pid": "42164"
+    }
+  ]
+}

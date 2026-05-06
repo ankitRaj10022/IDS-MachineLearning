@@ -1,0 +1,276 @@
+{
+  "created_at": "2026-05-06T04:45:12+00:00",
+  "kind": "attacks",
+  "payload": {
+    "datasets": {
+      "train": {
+        "path": "kddtrain.csv",
+        "rows": 494021,
+        "malformed_rows": 0,
+        "columns": 42,
+        "size_mb": 46.13,
+        "label_counts": {
+          "0": 97278,
+          "1": 396743
+        },
+        "attack_share": 0.803089,
+        "normal_share": 0.196911,
+        "total_src_bytes": 1494715024,
+        "total_dst_bytes": 429073257,
+        "top_protocols": [
+          [
+            "3",
+            283602
+          ],
+          [
+            "1",
+            190065
+          ],
+          [
+            "2",
+            20354
+          ]
+        ],
+        "top_services": [
+          [
+            "54",
+            281400
+          ],
+          [
+            "24",
+            110893
+          ],
+          [
+            "1",
+            64293
+          ],
+          [
+            "19",
+            9723
+          ],
+          [
+            "29",
+            7237
+          ],
+          [
+            "57",
+            5863
+          ],
+          [
+            "49",
+            4721
+          ],
+          [
+            "55",
+            1642
+          ]
+        ],
+        "top_flags": [
+          [
+            "1",
+            378440
+          ],
+          [
+            "6",
+            87007
+          ],
+          [
+            "10",
+            26875
+          ],
+          [
+            "7",
+            903
+          ],
+          [
+            "9",
+            579
+          ],
+          [
+            "2",
+            107
+          ],
+          [
+            "5",
+            57
+          ],
+          [
+            "4",
+            32
+          ]
+        ]
+      },
+      "test": {
+        "path": "kddtest.csv",
+        "rows": 311029,
+        "malformed_rows": 0,
+        "columns": 42,
+        "size_mb": 29.04,
+        "label_counts": {
+          "0": 60593,
+          "1": 250436
+        },
+        "attack_share": 0.805185,
+        "normal_share": 0.194815,
+        "total_src_bytes": 538609601,
+        "total_dst_bytes": 232647728,
+        "top_protocols": [
+          [
+            "3",
+            164969
+          ],
+          [
+            "1",
+            119357
+          ],
+          [
+            "2",
+            26703
+          ]
+        ],
+        "top_services": [
+          [
+            "54",
+            164352
+          ],
+          [
+            "24",
+            78510
+          ],
+          [
+            "1",
+            41237
+          ],
+          [
+            "19",
+            8268
+          ],
+          [
+            "26",
+            3972
+          ],
+          [
+            "57",
+            3160
+          ],
+          [
+            "49",
+            2223
+          ],
+          [
+            "29",
+            2185
+          ]
+        ],
+        "top_flags": [
+          [
+            "1",
+            248379
+          ],
+          [
+            "10",
+            41945
+          ],
+          [
+            "6",
+            18012
+          ],
+          [
+            "9",
+            1393
+          ],
+          [
+            "7",
+            872
+          ],
+          [
+            "3",
+            289
+          ],
+          [
+            "2",
+            84
+          ],
+          [
+            "5",
+            27
+          ]
+        ]
+      }
+    },
+    "model_indicators": [
+      {
+        "feature": "count",
+        "separation": 3.641151,
+        "normal_mean": 8.148202,
+        "attack_mean": 412.523796
+      },
+      {
+        "feature": "srv_count",
+        "separation": 2.199349,
+        "normal_mean": 10.928762,
+        "attack_mean": 363.384052
+      },
+      {
+        "feature": "logged_in",
+        "separation": 2.191975,
+        "normal_mean": 0.718904,
+        "attack_mean": 0.008222
+      },
+      {
+        "feature": "service",
+        "separation": 2.059537,
+        "normal_mean": 12.613195,
+        "attack_mean": 45.54801
+      },
+      {
+        "feature": "protocol_type",
+        "separation": 1.700343,
+        "normal_mean": 1.223851,
+        "attack_mean": 2.432061
+      },
+      {
+        "feature": "dst_host_same_src_port_rate",
+        "separation": 1.569246,
+        "normal_mean": 0.132841,
+        "attack_mean": 0.719297
+      },
+      {
+        "feature": "dst_host_count",
+        "separation": 1.39593,
+        "normal_mean": 148.914254,
+        "attack_mean": 253.060157
+      },
+      {
+        "feature": "same_srv_rate",
+        "separation": 0.792614,
+        "normal_mean": 0.985573,
+        "attack_mean": 0.746951
+      },
+      {
+        "feature": "dst_host_srv_serror_rate",
+        "separation": 0.739843,
+        "normal_mean": 0.00114,
+        "attack_mean": 0.216906
+      },
+      {
+        "feature": "serror_rate",
+        "separation": 0.738467,
+        "normal_mean": 0.001596,
+        "attack_mean": 0.217081
+      },
+      {
+        "feature": "srv_serror_rate",
+        "separation": 0.736699,
+        "normal_mean": 0.001803,
+        "attack_mean": 0.216935
+      },
+      {
+        "feature": "dst_host_serror_rate",
+        "separation": 0.736458,
+        "normal_mean": 0.002138,
+        "attack_mean": 0.217034
+      }
+    ]
+  }
+}

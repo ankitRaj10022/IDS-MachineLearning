@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-05-06T04:45:53+00:00",
+  "kind": "filescan",
+  "payload": {
+    "path": "terminal.cmd",
+    "size": 377,
+    "sha256": "fde5558ac4fa6c2b0cd15d5f0072084d9d40a83b7885f48549c238ba6d563565",
+    "sha1": "343cec4dfe4f77a4f4ee7ea4836d0d8339cfbba9",
+    "md5": "b87be7ab9a7745421bc5118999b25b4e",
+    "findings": [],
+    "triage": "no_builtin_findings"
+  }
+}
