@@ -1,0 +1,11 @@
+IDS Firewall Tool
+
+Windows:
+  ids-firewall.cmd status
+  ids-firewall-gui.cmd
+
+macOS/Linux:
+  ./ids-firewall status
+  ./ids-firewall-gui
+
+Read README.md for the full manual.

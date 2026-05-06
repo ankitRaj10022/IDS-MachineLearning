@@ -97,6 +97,13 @@ Open the interactive product terminal:
 .\terminal.cmd
 ```
 
+Open the GUI:
+
+```powershell
+.\terminal.cmd gui
+.\gui.cmd
+```
+
 Inside the shell, type:
 
 ```text
@@ -107,6 +114,79 @@ attacks
 ports 20
 cache 20
 exit
+```
+
+## Downloadable Tool Builds
+
+Portable downloadable archives are generated under `dist/`:
+
+```text
+dist/ids-firewall-tool-windows.zip
+dist/ids-firewall-tool-macos.tar.gz
+dist/ids-firewall-tool-linux.tar.gz
+dist/ids-firewall-tool-portable.zip
+```
+
+Build or rebuild them from the repository root:
+
+```powershell
+python scripts\build_distributions.py
+```
+
+The archives contain:
+
+```text
+ids-firewall.pyz
+ids-firewall.cmd
+ids-firewall-gui.cmd
+ids-firewall
+ids-firewall-gui
+kddtrain.csv
+kddtest.csv
+README.md
+INSTALL.txt
+automation/product/self_learning_model.json
+```
+
+Windows users:
+
+```powershell
+ids-firewall.cmd status
+ids-firewall.cmd scan kddtest.csv --limit 5000
+ids-firewall-gui.cmd
+```
+
+macOS and Linux users:
+
+```bash
+chmod +x ./ids-firewall ./ids-firewall-gui
+./ids-firewall status
+./ids-firewall scan kddtest.csv --limit 5000
+./ids-firewall-gui
+```
+
+These portable builds require Python 3 on the target machine. The application logic is packaged as a Python zipapp (`ids-firewall.pyz`) using only standard-library code.
+
+### Native Binary Builds
+
+Native executable builds can be made with PyInstaller on the target operating system:
+
+```powershell
+scripts\build_native.ps1
+```
+
+```bash
+bash scripts/build_native.sh
+```
+
+PyInstaller is not a cross-compiler. Build the Windows executable on Windows, the macOS app on macOS, and the Linux executable on Linux. This repository includes the scripts, but this Windows machine cannot produce real macOS/Linux native binaries directly.
+
+Packaging references:
+
+```text
+PyInstaller docs: https://pyinstaller.org/en/stable/index.html
+Python zipapp docs: https://docs.python.org/3/library/zipapp.html
+Python tkinter docs: https://docs.python.org/3/library/tkinter.html
 ```
 
 ## Primary Commands
@@ -162,6 +242,13 @@ File triage commands:
 ```powershell
 .\terminal.cmd hash terminal.cmd
 .\terminal.cmd filescan terminal.cmd
+```
+
+GUI commands:
+
+```powershell
+.\terminal.cmd gui
+.\gui.cmd
 ```
 
 Cache commands:
@@ -359,6 +446,8 @@ If `terminal.exe` is missing, use `terminal.cmd`. On this machine, Windows Defen
 ```text
 tools/TerminalLauncher.cs
 ```
+
+If the GUI does not open on Linux, install the Tk package for your Python distribution. The GUI uses Python's standard `tkinter` module.
 
 If the old Conda activation script fails, install Miniconda or Anaconda first. The script now stops clearly if Conda is missing:
 

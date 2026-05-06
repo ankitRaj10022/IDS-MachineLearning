@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-05-06T03:39:03+00:00",
+  "kind": "import",
+  "payload": {
+    "source": "C:\\Users\\danny\\AppData\\Local\\Temp\\ids_external_sample.csv",
+    "target": "automation\\product\\imports\\temp_external_sample.csv",
+    "bytes": 488
+  }
+}

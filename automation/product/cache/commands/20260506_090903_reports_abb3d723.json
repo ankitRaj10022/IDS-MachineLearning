@@ -1,0 +1,54 @@
+{
+  "created_at": "2026-05-06T03:39:03+00:00",
+  "kind": "reports",
+  "payload": [
+    {
+      "name": "traffic_analysis_20260506_084127.json",
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_084127.json",
+      "size_kb": 1.66,
+      "modified": "2026-05-06T08:41:27"
+    },
+    {
+      "name": "traffic_analysis_20260506_084127.csv",
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_084127.csv",
+      "size_kb": 305.43,
+      "modified": "2026-05-06T08:41:27"
+    },
+    {
+      "name": "traffic_analysis_20260506_082152.json",
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_082152.json",
+      "size_kb": 1.71,
+      "modified": "2026-05-06T08:21:53"
+    },
+    {
+      "name": "traffic_analysis_20260506_082152.csv",
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_082152.csv",
+      "size_kb": 1571.31,
+      "modified": "2026-05-06T08:21:53"
+    },
+    {
+      "name": "traffic_analysis_20260506_081949.json",
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_081949.json",
+      "size_kb": 1.34,
+      "modified": "2026-05-06T08:19:49"
+    },
+    {
+      "name": "traffic_analysis_20260506_081949.csv",
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_081949.csv",
+      "size_kb": 31.08,
+      "modified": "2026-05-06T08:19:49"
+    },
+    {
+      "name": "traffic_analysis_20260506_081928.json",
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_081928.json",
+      "size_kb": 1.4,
+      "modified": "2026-05-06T08:19:28"
+    },
+    {
+      "name": "traffic_analysis_20260506_081928.csv",
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_081928.csv",
+      "size_kb": 31.12,
+      "modified": "2026-05-06T08:19:28"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-05-06T03:39:55+00:00",
+  "kind": "hunt",
+  "payload": {
+    "pattern": "dos_flood",
+    "matches": [
+      {
+        "path": "automation\\product\\exports\\traffic_analysis_20260506_082152.csv",
+        "line": 172,
+        "text": "scan-20260506_082152,2026-05-06T02:51:52+00:00,kddtest.csv,171,0,normal,1,attack,1.0,1.0,critical,dos_flood,\"high connection or service-error rate; fragment, urgent, or high byte volume\",0.0,1.0,3.0,5.0,286040.0,383476.0,0.0,0.0,0.0,0.0,0.0"
+      },
+      {
+        "path": "automation\\product\\exports\\traffic_analysis_20260506_082152.csv",
+        "line": 815,
+        "text": "scan-20260506_082152,2026-05-06T02:51:53+00:00,kddtest.csv,814,1,attack,1,attack,1.0,1.0,critical,dos_flood,high connection or service-error rate,0.0,3.0,54.0,1.0,1032.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,50"
+      }
+    ]
+  }
+}

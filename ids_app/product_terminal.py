@@ -24,7 +24,7 @@ from typing import Any, Iterable
 from uuid import uuid4
 
 
-ROOT_DIR = Path(__file__).resolve().parents[1]
+ROOT_DIR = Path(os.environ.get("IDS_PRODUCT_HOME", Path(__file__).resolve().parents[1])).resolve()
 TRAIN_CSV = ROOT_DIR / "kddtrain.csv"
 TEST_CSV = ROOT_DIR / "kddtest.csv"
 PRODUCT_DIR = ROOT_DIR / "automation" / "product"
@@ -95,6 +95,24 @@ COMMON_PORT_RISKS = {
     27017: "MongoDB. Database exposure risk.",
 }
 COMMON_PROBE_PORTS = [21, 22, 23, 25, 53, 80, 110, 135, 139, 143, 443, 445, 1433, 3306, 3389, 5432, 5900, 6379, 8080, 9200, 27017]
+TEXT_SEARCH_MAX_FILE_BYTES = 128 * 1024 * 1024
+TEXT_SEARCH_SKIP_SUFFIXES = {
+    ".7z",
+    ".bin",
+    ".dll",
+    ".exe",
+    ".gz",
+    ".h5",
+    ".joblib",
+    ".jpg",
+    ".jpeg",
+    ".keras",
+    ".pdf",
+    ".png",
+    ".pyc",
+    ".tar",
+    ".zip",
+}
 
 SUSPICIOUS_FILE_PATTERNS = [
     "powershell -enc",
@@ -321,6 +339,21 @@ def resolve_any_product_path(path_text: str | None, default: Path = TEST_CSV) ->
         resolved.relative_to(ROOT_DIR)
     except ValueError:
         raise ValueError("path must stay inside the project directory")
+    return resolved
+
+
+def resolve_readable_path(path_text: str | None, default: Path | None = None, base: Path | None = None) -> Path:
+    if not path_text:
+        if default is None:
+            raise ValueError("path is required")
+        path = default
+    else:
+        path = Path(path_text)
+        if not path.is_absolute():
+            path = (base or ROOT_DIR) / path
+    resolved = path.resolve()
+    if not resolved.exists() or not resolved.is_file():
+        raise ValueError(f"not a readable file: {path_text or default}")
     return resolved
 
 
@@ -879,7 +912,7 @@ def latest_export_summary() -> dict[str, Any] | None:
     return read_json(summaries[0])
 
 
-def list_reports(limit: int = 20) -> list[dict[str, Any]]:
+def list_reports(limit: int | None = 20) -> list[dict[str, Any]]:
     if not EXPORTS_DIR.exists():
         return []
     reports = []
@@ -894,7 +927,7 @@ def list_reports(limit: int = 20) -> list[dict[str, Any]]:
                 "modified": datetime.fromtimestamp(path.stat().st_mtime).isoformat(timespec="seconds"),
             }
         )
-        if len(reports) >= limit:
+        if limit is not None and len(reports) >= limit:
             break
     return reports
 
@@ -939,7 +972,7 @@ def show_cache(json_output: bool = False, limit: int = 40) -> None:
     ]))
 
 
-def list_run_summaries(limit: int = 8) -> list[dict[str, Any]]:
+def list_run_summaries(limit: int | None = 8) -> list[dict[str, Any]]:
     runs_dir = ROOT_DIR / "automation" / "runs"
     if not runs_dir.exists():
         return []
@@ -948,7 +981,7 @@ def list_run_summaries(limit: int = 8) -> list[dict[str, Any]]:
         payload = read_json(path)
         if payload:
             rows.append(payload)
-        if len(rows) >= limit:
+        if limit is not None and len(rows) >= limit:
             break
     return rows
 
@@ -994,16 +1027,20 @@ def download_url(url: str, name: str | None = None, max_bytes: int = 2 * 1024 * 
     parsed_name = name or Path(url.split("?", 1)[0]).name or f"download_{compact_timestamp()}"
     safe_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", parsed_name)
     target = IMPORTS_DIR / safe_name
-    with urllib.request.urlopen(url, timeout=60) as response, target.open("wb") as handle:
-        copied = 0
-        while True:
-            chunk = response.read(1024 * 1024)
-            if not chunk:
-                break
-            copied += len(chunk)
-            if copied > max_bytes:
-                raise RuntimeError("download exceeded the 2 GB safety limit")
-            handle.write(chunk)
+    try:
+        with urllib.request.urlopen(url, timeout=60) as response, target.open("wb") as handle:
+            copied = 0
+            while True:
+                chunk = response.read(1024 * 1024)
+                if not chunk:
+                    break
+                copied += len(chunk)
+                if copied > max_bytes:
+                    raise RuntimeError("download exceeded the 2 GB safety limit")
+                handle.write(chunk)
+    except Exception:
+        target.unlink(missing_ok=True)
+        raise
     cache_artifact("download", {"url": url, "path": relative_path(target), "bytes": target.stat().st_size})
     return target
 
@@ -1422,12 +1459,22 @@ def search_text_files(pattern: str, paths: list[Path], limit: int = 50) -> list[
     for path in paths:
         if not path.exists() or not path.is_file():
             continue
-        with path.open("r", encoding="utf-8", errors="ignore", newline="") as handle:
-            for line_number, line in enumerate(handle, start=1):
-                if lowered in line.lower():
-                    results.append({"path": relative_path(path), "line": line_number, "text": line.strip()[:240]})
-                    if len(results) >= limit:
-                        return results
+        try:
+            if path.suffix.lower() in TEXT_SEARCH_SKIP_SUFFIXES:
+                continue
+            if path.stat().st_size > TEXT_SEARCH_MAX_FILE_BYTES:
+                continue
+        except OSError:
+            continue
+        try:
+            with path.open("r", encoding="utf-8", errors="ignore", newline="") as handle:
+                for line_number, line in enumerate(handle, start=1):
+                    if lowered in line.lower():
+                        results.append({"path": relative_path(path), "line": line_number, "text": line.strip()[:240]})
+                        if len(results) >= limit:
+                            return results
+        except OSError:
+            continue
     return results
 
 
@@ -1815,7 +1862,7 @@ def show_scan(summary: dict[str, Any], json_output: bool = False) -> None:
         print(f"Summary JSON:       {summary['export_json']}")
 
 
-def show_reports(json_output: bool = False, limit: int = 20) -> None:
+def show_reports(json_output: bool = False, limit: int | None = 20) -> None:
     reports = list_reports(limit)
     cache_artifact("reports", reports)
     if json_output:
@@ -1830,7 +1877,7 @@ def show_reports(json_output: bool = False, limit: int = 20) -> None:
     ]))
 
 
-def show_runs(json_output: bool = False, limit: int = 10) -> None:
+def show_runs(json_output: bool = False, limit: int | None = 10) -> None:
     runs = list_run_summaries(limit)
     cache_artifact("runs", runs)
     if json_output:
@@ -1896,7 +1943,10 @@ def parse_limit(value: str | None, default: int | None) -> int | None:
         return default
     if value.lower() == "all":
         return None
-    return int(value)
+    parsed = int(value)
+    if parsed < 0:
+        raise ValueError("limit must be zero or greater")
+    return parsed
 
 
 def command_shell() -> None:
@@ -1994,11 +2044,11 @@ def run_shell_command(raw: str) -> bool:
         limit = 20000 if mode == "quick" else None
         show_learn(learn_model(limit=limit, include_generated=True))
     elif command in {"scan", "analyze"}:
-        path = resolve_any_product_path(args[0] if args else None)
+        path = resolve_readable_path(args[0] if args else None, default=TEST_CSV, base=Path(SHELL_STATE.get("cwd", ROOT_DIR)))
         limit = parse_limit(args[1], 5000) if len(args) > 1 else 5000
         show_scan(analyze_csv(path, limit=limit, export=True))
     elif command == "export":
-        path = resolve_any_product_path(args[0] if args else None)
+        path = resolve_readable_path(args[0] if args else None, default=TEST_CSV, base=Path(SHELL_STATE.get("cwd", ROOT_DIR)))
         limit = parse_limit(args[1], None) if len(args) > 1 else None
         show_scan(analyze_csv(path, limit=limit, export=True))
     elif command in {"datasets", "catalog"}:
@@ -2007,7 +2057,7 @@ def run_shell_command(raw: str) -> bool:
         if not args:
             print("usage: import <csv-path> [name]")
         else:
-            show_import(import_csv(shell_path(args[0]), args[1] if len(args) > 1 else None))
+            show_import(import_csv(resolve_readable_path(args[0], base=Path(SHELL_STATE.get("cwd", ROOT_DIR))), args[1] if len(args) > 1 else None))
     elif command == "download":
         if not args:
             print("usage: download <url> [name]")
@@ -2015,14 +2065,14 @@ def run_shell_command(raw: str) -> bool:
             downloaded = download_url(args[0], args[1] if len(args) > 1 else None)
             print(f"Downloaded: {relative_path(downloaded)}")
     elif command == "index":
-        path = resolve_any_product_path(args[0] if args else None)
+        path = resolve_readable_path(args[0] if args else None, default=TEST_CSV, base=Path(SHELL_STATE.get("cwd", ROOT_DIR)))
         limit = parse_limit(args[1], 50000) if len(args) > 1 else 50000
         show_index(path, limit=limit)
     elif command == "hunt":
         if not args:
             print("usage: hunt <term> [path] [limit]")
         else:
-            show_hunt(args[0], shell_path(args[1]) if len(args) > 1 else None, limit=int(args[2]) if len(args) > 2 else 50)
+            show_hunt(args[0], resolve_readable_path(args[1], base=Path(SHELL_STATE.get("cwd", ROOT_DIR))) if len(args) > 1 else None, limit=parse_limit(args[2], 50) if len(args) > 2 else 50)
     elif command == "ioc":
         show_ioc(args)
     elif command in {"ports", "listeners"}:
@@ -2050,12 +2100,12 @@ def run_shell_command(raw: str) -> bool:
         if not args:
             print("usage: hash <file>")
         else:
-            show_hash(shell_path(args[0]), json_output=False)
+            show_hash(resolve_readable_path(args[0], base=Path(SHELL_STATE.get("cwd", ROOT_DIR))), json_output=False)
     elif command in {"filescan", "scanfile"}:
         if not args:
             print("usage: filescan <file>")
         else:
-            show_file_scan(shell_path(args[0]))
+            show_file_scan(resolve_readable_path(args[0], base=Path(SHELL_STATE.get("cwd", ROOT_DIR))))
     elif command in {"reports", "downloads"}:
         show_reports(limit=parse_limit(args[0], 20) if args else 20)
     elif command == "cache":
@@ -2073,6 +2123,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command")
 
     subparsers.add_parser("shell", help="Open the interactive product terminal.")
+    subparsers.add_parser("gui", help="Open the graphical product console.")
     subparsers.add_parser("status", help="Show product status.")
     subparsers.add_parser("traffic", help="Show traffic data.")
     subparsers.add_parser("attacks", help="Show attacks and learned indicators.")
@@ -2163,6 +2214,10 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command is None or args.command == "shell":
             command_shell()
+        elif args.command == "gui":
+            from .product_gui import main as gui_main
+
+            return gui_main([])
         elif args.command == "status":
             show_status(args.json)
         elif args.command == "traffic":
@@ -2181,23 +2236,23 @@ def main(argv: list[str] | None = None) -> int:
             )
             show_learn(model, args.json)
         elif args.command == "scan":
-            source = resolve_repo_path(args.path)
+            source = resolve_readable_path(args.path, default=TEST_CSV)
             summary = analyze_csv(source, limit=None if args.all else args.limit, export=not args.no_export)
             show_scan(summary, args.json)
         elif args.command == "export":
-            source = resolve_repo_path(args.path)
+            source = resolve_readable_path(args.path, default=TEST_CSV)
             summary = analyze_csv(source, limit=args.limit, export=True)
             show_scan(summary, args.json)
         elif args.command == "import":
-            show_import(import_csv(resolve_any_product_path(args.path), args.name), args.json)
+            show_import(import_csv(resolve_readable_path(args.path), args.name), args.json)
         elif args.command == "download":
             downloaded = download_url(args.url, args.name)
             payload = {"downloaded": relative_path(downloaded)}
             print_json(payload) if args.json else print(f"Downloaded: {payload['downloaded']}")
         elif args.command == "index":
-            show_index(resolve_any_product_path(args.path), args.json, limit=None if args.all else args.limit)
+            show_index(resolve_readable_path(args.path, default=TEST_CSV), args.json, limit=None if args.all else args.limit)
         elif args.command == "hunt":
-            show_hunt(args.pattern, resolve_any_product_path(args.path) if args.path else None, args.json, args.limit)
+            show_hunt(args.pattern, resolve_readable_path(args.path) if args.path else None, args.json, args.limit)
         elif args.command == "ioc":
             show_ioc(args.ioc_args, args.json)
         elif args.command == "netstat":
@@ -2213,9 +2268,9 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == "ps":
             show_processes(args.json, args.limit)
         elif args.command == "hash":
-            show_hash(resolve_any_product_path(args.path), args.json)
+            show_hash(resolve_readable_path(args.path), args.json)
         elif args.command == "filescan":
-            show_file_scan(resolve_any_product_path(args.path), args.json)
+            show_file_scan(resolve_readable_path(args.path), args.json)
         elif args.command == "reports":
             show_reports(args.json, args.limit)
         elif args.command == "runs":
