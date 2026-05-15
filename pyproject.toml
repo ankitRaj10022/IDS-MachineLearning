@@ -33,9 +33,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ankitRaj10022/IDS-MachineLearning"
-Repository = "https://github.com/ankitRaj10022/IDS-MachineLearning"
-Issues = "https://github.com/ankitRaj10022/IDS-MachineLearning/issues"
+Homepage = "https://github.com/ankitRaj10022/IDS-Sentinel"
+Repository = "https://github.com/ankitRaj10022/IDS-Sentinel"
+Issues = "https://github.com/ankitRaj10022/IDS-Sentinel/issues"
 
 [project.scripts]
 ids-sentinel = "ids_app.product_app:main"

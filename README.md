@@ -24,7 +24,7 @@ This product does not install firewall rules, block packets, exploit systems, by
 ## Project Layout
 
 ```text
-IDS-MachineLearning/
+IDS-Sentinel/
   pyproject.toml                       Installable package metadata
   terminal.cmd                         Windows product launcher
   terminal.ps1                         PowerShell product launcher

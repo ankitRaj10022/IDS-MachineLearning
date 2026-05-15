@@ -11,7 +11,7 @@ The remaining work is ownership and release setup on GitHub and PyPI.
 ## Package Identity
 
 - PyPI project name: `ids-sentinel-terminal`
-- GitHub repository: `ankitRaj10022/IDS-MachineLearning`
+- GitHub repository: `ankitRaj10022/IDS-Sentinel`
 - Release workflow file: `.github/workflows/release.yml`
 - PyPI environment name in GitHub Actions: `pypi`
 
@@ -29,7 +29,7 @@ On PyPI:
 ```text
 PyPI project name: ids-sentinel-terminal
 Owner: ankitRaj10022
-Repository name: IDS-MachineLearning
+Repository name: IDS-Sentinel
 Workflow name: release.yml
 Environment name: pypi
 ```

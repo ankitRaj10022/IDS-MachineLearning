@@ -48,6 +48,14 @@ def stage_sources() -> Path:
     return BUILD_SRC_DIR
 
 
+def ensure_build_tools() -> None:
+    try:
+        import setuptools  # noqa: F401
+        import wheel  # noqa: F401
+    except ImportError:
+        subprocess.run([sys.executable, "-m", "pip", "install", "setuptools", "wheel"], cwd=ROOT, check=True)
+
+
 def run_setup(stage_dir: Path, command: str) -> None:
     subprocess.run(
         [sys.executable, "setup.py", command, "--dist-dir", str(DIST_DIR)],
@@ -58,6 +66,7 @@ def run_setup(stage_dir: Path, command: str) -> None:
 
 def main() -> int:
     clean_previous_outputs()
+    ensure_build_tools()
     stage_dir = stage_sources()
     run_setup(stage_dir, "bdist_wheel")
     run_setup(stage_dir, "sdist")
