@@ -1,5 +1,8 @@
 IDS Sentinel Terminal
 
+This portable build contains the packaged app plus bundled seed datasets.
+On first run it will initialize the working home inside this folder.
+
 Windows:
   ids-sentinel-terminal.cmd status
   ids-sentinel-terminal-gui.cmd

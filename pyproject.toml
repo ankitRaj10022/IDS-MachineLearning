@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ids-sentinel-terminal"
+version = "0.2.0"
+description = "Installable CLI and GUI for IDS Sentinel Terminal traffic analysis and local triage."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "IDS Sentinel Terminal Contributors" }
+]
+keywords = ["ids", "cli", "security", "network", "traffic-analysis", "threat-hunting"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Environment :: Win32 (MS Windows)",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "Operating System :: MacOS",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Security",
+  "Topic :: System :: Networking :: Monitoring",
+  "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/ankitRaj10022/IDS-MachineLearning"
+Repository = "https://github.com/ankitRaj10022/IDS-MachineLearning"
+Issues = "https://github.com/ankitRaj10022/IDS-MachineLearning/issues"
+
+[project.scripts]
+ids-sentinel = "ids_app.product_app:main"
+ids-sentinel-terminal = "ids_app.product_app:main"
+ids-sentinal = "ids_app.product_app:main"
+
+[project.gui-scripts]
+ids-sentinel-gui = "ids_app.product_gui:main"
+
+[tool.setuptools.packages.find]
+include = ["ids_app*"]
+
+[tool.setuptools.package-data]
+ids_app = ["assets/*"]

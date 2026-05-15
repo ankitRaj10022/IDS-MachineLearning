@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import argparse
-import os
 import shutil
 import stat
+import subprocess
+import sys
 import tarfile
 import zipapp
 import zipfile
@@ -46,7 +47,7 @@ def prepare_stage(include_exports: bool = False) -> Path:
     copy_tree(ROOT / "ids_app", app_src / "ids_app")
     zipapp.create_archive(app_src, BUILD_DIR / APP_PYZ, main="ids_app.product_app:main", interpreter="/usr/bin/env python3")
 
-    for filename in ("README.md", "kddtrain.csv", "kddtest.csv"):
+    for filename in ("README.md",):
         source = ROOT / filename
         if source.exists():
             shutil.copy2(source, BUILD_DIR / filename)
@@ -56,11 +57,6 @@ def prepare_stage(include_exports: bool = False) -> Path:
     (product_dir / "imports").mkdir(parents=True, exist_ok=True)
     (product_dir / "cache" / "indexes").mkdir(parents=True, exist_ok=True)
     (product_dir / "cache" / "commands").mkdir(parents=True, exist_ok=True)
-
-    for filename in ("self_learning_model.json", "iocs.json"):
-        source = ROOT / "automation" / "product" / filename
-        if source.exists():
-            shutil.copy2(source, product_dir / filename)
 
     if include_exports and (ROOT / "automation" / "product" / "exports").exists():
         copy_tree(ROOT / "automation" / "product" / "exports", product_dir / "exports")
@@ -124,6 +120,9 @@ exec python3 "$DIR/ids-sentinel-terminal.pyz" gui "$@"
         stage / "INSTALL.txt",
         """IDS Sentinel Terminal
 
+This portable build contains the packaged app plus bundled seed datasets.
+On first run it will initialize the working home inside this folder.
+
 Windows:
   ids-sentinel-terminal.cmd status
   ids-sentinel-terminal-gui.cmd
@@ -168,11 +167,27 @@ def build_archives(include_exports: bool = False) -> list[Path]:
     return targets
 
 
+def build_python_package() -> list[Path]:
+    DIST_DIR.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "build_python_package.py")],
+        cwd=ROOT,
+        check=True,
+    )
+    targets = []
+    for pattern in ("ids_sentinel_terminal-*.whl", "ids_sentinel_terminal-*.tar.gz", "ids-sentinel-terminal-*.tar.gz"):
+        targets.extend(sorted(DIST_DIR.glob(pattern)))
+    return targets
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build cross-platform IDS Sentinel Terminal archives.")
     parser.add_argument("--include-exports", action="store_true", help="Bundle generated analysis reports too.")
+    parser.add_argument("--python-package", action="store_true", help="Also build wheel and sdist via python -m build.")
     args = parser.parse_args()
     targets = build_archives(include_exports=args.include_exports)
+    if args.python_package:
+        targets.extend(build_python_package())
     for target in targets:
         size_mb = target.stat().st_size / (1024 * 1024)
         print(f"{target.relative_to(ROOT)} ({size_mb:.2f} MB)")

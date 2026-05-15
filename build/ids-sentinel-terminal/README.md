@@ -1,8 +1,8 @@
 # IDS Sentinel Terminal
 
-This repository contains an Intrusion Detection System product terminal built around the bundled IDS CSV datasets. The main Windows product entrypoint is `terminal.cmd`. It works without Conda, Docker, pandas, scikit-learn, or TensorFlow, so a user can inspect traffic data and generate reports with the Python already available on this machine.
+IDS Sentinel Terminal is an installable defensive CLI and GUI tool built around bundled IDS CSV datasets. The preferred interface is the `ids-sentinel` command, which can be installed as a normal Python application instead of requiring users to clone the repository and run repo-local launchers.
 
-The older FastAPI/Docker automation app and ML training code are still present. The product terminal is the recommended first interface for Windows users.
+The older FastAPI/Docker automation app and ML training code are still present in this repository. For end users, the recommended interface is the packaged CLI/GUI tool.
 
 ## What This Product Does
 
@@ -25,9 +25,11 @@ This product does not install firewall rules, block packets, exploit systems, by
 
 ```text
 IDS-MachineLearning/
+  pyproject.toml                       Installable package metadata
   terminal.cmd                         Windows product launcher
   terminal.ps1                         PowerShell product launcher
   ids_app/product_terminal.py          Main product terminal code
+  ids_app/assets/                      Bundled seed datasets and starter model
   tools/TerminalLauncher.cs            Source for optional native exe launcher
   kddtrain.csv                         Training traffic CSV
   kddtest.csv                          Testing traffic CSV
@@ -43,14 +45,13 @@ IDS-MachineLearning/
 
 ## Requirements
 
-For the product terminal:
+For the installable product tool:
 
 ```text
-Windows
-Python 3
+Python 3.10+
 ```
 
-No Conda or Docker is required for `terminal.cmd`.
+No Conda or Docker is required for `ids-sentinel`.
 
 For the older ML training and web app:
 
@@ -59,49 +60,91 @@ Docker or WSL for the container workflow
 Conda/Python data-science environment for direct classical/DNN training
 ```
 
-## Quick Start
+## Tool-First Install
 
-Open PowerShell in the repository root:
+Once the package is published, the cleanest setup is with `pipx`:
+
+```bash
+pipx install ids-sentinel-terminal
+```
+
+This exposes these commands on your `PATH`:
+
+```text
+ids-sentinel
+ids-sentinel-terminal
+ids-sentinel-gui
+```
+
+Direct `pip` install also works:
+
+```bash
+pip install ids-sentinel-terminal
+```
+
+For local development or pre-publish testing from a source checkout, build the wheel and install that artifact:
 
 ```powershell
-cd "C:\Users\danny\Desktop\Intrusion-Detection-Systems-master\IDS-MachineLearning"
+python -m pip install build
+python scripts\build_python_package.py
+pip install dist\ids_sentinel_terminal-0.2.0-py3-none-any.whl
 ```
+
+The installed tool keeps its writable working data in a user home directory:
+
+```text
+Windows: %USERPROFILE%\.ids-sentinel-terminal
+macOS/Linux: ~/.ids-sentinel-terminal
+```
+
+On first run, the tool bootstraps these files into that home:
+
+```text
+kddtrain.csv
+kddtest.csv
+automation/product/self_learning_model.json
+automation/product/iocs.json
+```
+
+Set `IDS_PRODUCT_HOME` if you want a custom writable location.
+
+## Quick Start
 
 Run the product status command:
 
-```powershell
-.\terminal.cmd status
+```bash
+ids-sentinel status
 ```
 
 Build or refresh the self-learning model:
 
-```powershell
-.\terminal.cmd learn
+```bash
+ids-sentinel learn
 ```
 
 Analyze the first 5,000 rows of the test CSV and export results:
 
-```powershell
-.\terminal.cmd scan kddtest.csv --limit 5000
+```bash
+ids-sentinel scan kddtest.csv --limit 5000
 ```
 
 List generated reports:
 
-```powershell
-.\terminal.cmd reports
+```bash
+ids-sentinel reports
 ```
 
 Open the interactive product terminal:
 
-```powershell
-.\terminal.cmd
+```bash
+ids-sentinel
 ```
 
 Open the GUI:
 
-```powershell
-.\terminal.cmd gui
-.\gui.cmd
+```bash
+ids-sentinel gui
+ids-sentinel-gui
 ```
 
 Inside the shell, type:
@@ -118,19 +161,32 @@ exit
 
 ## Downloadable Tool Builds
 
-Portable downloadable archives are generated under `dist/`:
+Release artifacts can be published in two forms:
+
+1. Python package artifacts for `pip`/`pipx`
+2. Portable archives for direct download
 
 ```text
+dist/ids_sentinel_terminal-<version>-py3-none-any.whl
+dist/ids_sentinel_terminal-<version>.tar.gz
 dist/ids-sentinel-terminal-windows.zip
 dist/ids-sentinel-terminal-macos.tar.gz
 dist/ids-sentinel-terminal-linux.tar.gz
 dist/ids-sentinel-terminal-portable.zip
 ```
 
-Build or rebuild them from the repository root:
+Build or rebuild the portable archives:
 
 ```powershell
 python scripts\build_distributions.py
+```
+
+Also build the wheel and source distribution:
+
+```powershell
+python -m pip install build
+python scripts\build_python_package.py
+python scripts\build_distributions.py --python-package
 ```
 
 The archives contain:
@@ -141,11 +197,8 @@ ids-sentinel-terminal.cmd
 ids-sentinel-terminal-gui.cmd
 ids-sentinel-terminal
 ids-sentinel-terminal-gui
-kddtrain.csv
-kddtest.csv
 README.md
 INSTALL.txt
-automation/product/self_learning_model.json
 ```
 
 Windows users:
@@ -165,7 +218,7 @@ chmod +x ./ids-sentinel-terminal ./ids-sentinel-terminal-gui
 ./ids-sentinel-terminal-gui
 ```
 
-These portable builds require Python 3 on the target machine. The application logic is packaged as a Python zipapp (`ids-sentinel-terminal.pyz`) using only standard-library code.
+These portable builds require Python 3 on the target machine. The application logic is packaged as a Python zipapp (`ids-sentinel-terminal.pyz`) using only standard-library code, and it bootstraps its writable home into the extracted folder on first run.
 
 ### Native Binary Builds
 
@@ -193,77 +246,77 @@ Python tkinter docs: https://docs.python.org/3/library/tkinter.html
 
 Status and dataset commands:
 
-```powershell
-.\terminal.cmd status
-.\terminal.cmd traffic
-.\terminal.cmd attacks
-.\terminal.cmd malware --limit 5000
-.\terminal.cmd datasets
-.\terminal.cmd index kddtest.csv --limit 1000
+```bash
+ids-sentinel status
+ids-sentinel traffic
+ids-sentinel attacks
+ids-sentinel malware --limit 5000
+ids-sentinel datasets
+ids-sentinel index kddtest.csv --limit 1000
 ```
 
 Learning and analysis commands:
 
-```powershell
-.\terminal.cmd learn
-.\terminal.cmd learn --quick
-.\terminal.cmd learn --include-test
-.\terminal.cmd scan kddtest.csv --limit 5000
-.\terminal.cmd scan kddtest.csv --all
-.\terminal.cmd export kddtest.csv --limit 10000
-.\terminal.cmd reports --limit 20
+```bash
+ids-sentinel learn
+ids-sentinel learn --quick
+ids-sentinel learn --include-test
+ids-sentinel scan kddtest.csv --limit 5000
+ids-sentinel scan kddtest.csv --all
+ids-sentinel export kddtest.csv --limit 10000
+ids-sentinel reports --limit 20
 ```
 
 Search and IOC commands:
 
-```powershell
-.\terminal.cmd hunt dos_flood --limit 10
-.\terminal.cmd ioc add 192.0.2.10 ip lab-indicator
-.\terminal.cmd ioc list
-.\terminal.cmd ioc hunt
-.\terminal.cmd ioc remove <id>
+```bash
+ids-sentinel hunt dos_flood --limit 10
+ids-sentinel ioc add 192.0.2.10 ip lab-indicator
+ids-sentinel ioc list
+ids-sentinel ioc hunt
+ids-sentinel ioc remove <id>
 ```
 
 Network triage commands:
 
-```powershell
-.\terminal.cmd ports --limit 20
-.\terminal.cmd netstat --limit 30
-.\terminal.cmd netstat --listening
-.\terminal.cmd port 445
-.\terminal.cmd probe 127.0.0.1 common
-.\terminal.cmd probe 127.0.0.1 22,80,443
-.\terminal.cmd dns localhost
-.\terminal.cmd ps --limit 20
+```bash
+ids-sentinel ports --limit 20
+ids-sentinel netstat --limit 30
+ids-sentinel netstat --listening
+ids-sentinel port 445
+ids-sentinel probe 127.0.0.1 common
+ids-sentinel probe 127.0.0.1 22,80,443
+ids-sentinel dns localhost
+ids-sentinel ps --limit 20
 ```
 
 File triage commands:
 
-```powershell
-.\terminal.cmd hash terminal.cmd
-.\terminal.cmd filescan terminal.cmd
+```bash
+ids-sentinel hash kddtest.csv
+ids-sentinel filescan kddtest.csv
 ```
 
 GUI commands:
 
-```powershell
-.\terminal.cmd gui
-.\gui.cmd
+```bash
+ids-sentinel gui
+ids-sentinel-gui
 ```
 
 Cache commands:
 
-```powershell
-.\terminal.cmd cache
-.\terminal.cmd cache --limit 50
+```bash
+ids-sentinel cache
+ids-sentinel cache --limit 50
 ```
 
 ## Interactive Unix-Like Shell
 
 Start the shell:
 
-```powershell
-.\terminal.cmd
+```bash
+ids-sentinel
 ```
 
 Useful commands inside the shell:
@@ -294,6 +347,8 @@ Generated analysis reports are written here:
 ```text
 automation/product/exports/
 ```
+
+Under the installable tool flow, those paths live beneath the tool home directory rather than a git checkout.
 
 Each `scan` or `export` creates:
 
@@ -328,8 +383,8 @@ The built-in catalog points at large public IDS datasets. These are not download
 
 Catalog command:
 
-```powershell
-.\terminal.cmd datasets
+```bash
+ids-sentinel datasets
 ```
 
 Current catalog sources:
@@ -348,14 +403,14 @@ https://huggingface.co/datasets/lacg030175/UNSW-NB15
 Import an already downloaded CSV:
 
 ```powershell
-.\terminal.cmd import C:\path\to\dataset.csv --name external.csv
-.\terminal.cmd index automation/product/imports/external.csv --all
+ids-sentinel import C:\path\to\dataset.csv --name external.csv
+ids-sentinel index automation/product/imports/external.csv --all
 ```
 
 Download a public CSV URL into the import folder:
 
 ```powershell
-.\terminal.cmd download https://example.com/dataset.csv --name external.csv
+ids-sentinel download https://example.com/dataset.csv --name external.csv
 ```
 
 The downloader has a 2 GB safety limit per file. For very large datasets, download with a browser or dataset manager, then use `import`.
@@ -433,7 +488,13 @@ automation/product/exports/traffic_analysis_20260506_082152.json
 
 ## Troubleshooting
 
-If PowerShell blocks scripts, use the CMD launcher:
+If you want a normal installed command instead of repo-local scripts, use:
+
+```powershell
+pipx install ids-sentinel-terminal
+```
+
+If you are working from a source checkout and PowerShell blocks scripts, use the CMD launcher:
 
 ```powershell
 .\terminal.cmd status
@@ -441,7 +502,7 @@ If PowerShell blocks scripts, use the CMD launcher:
 
 If Python is not found, install Python 3 and reopen PowerShell.
 
-If `terminal.exe` is missing, use `terminal.cmd`. On this machine, Windows Defender blocked and removed the locally compiled unsigned `terminal.exe`. The source remains at:
+If `terminal.exe` is missing in a source checkout, use `terminal.cmd`. On this machine, Windows Defender blocked and removed the locally compiled unsigned `terminal.exe`. The source remains at:
 
 ```text
 tools/TerminalLauncher.cs
@@ -483,8 +544,10 @@ bash scripts/ids-terminal.sh train-dnn --architectures 1 --epochs 1 --train-samp
 ## Development Notes
 
 - Main product code is in `ids_app/product_terminal.py`.
+- Installable package metadata is in `pyproject.toml`.
 - Manual launchers are `terminal.cmd` and `terminal.ps1`.
-- The product terminal avoids heavy dependencies to keep Windows startup reliable.
+- Bundled install assets are in `ids_app/assets/`.
+- The product terminal avoids heavy dependencies to keep startup reliable.
 - The old ML modules still require pandas, numpy, scikit-learn, TensorFlow, and related packages.
 - Keep generated exports and cache under `automation/product/`.
 - Do not commit Python `__pycache__` files.

@@ -5,6 +5,7 @@ import csv
 import fnmatch
 import hashlib
 import ipaddress
+import importlib.resources
 import json
 import math
 import os
@@ -23,8 +24,43 @@ from pathlib import Path
 from typing import Any, Iterable
 from uuid import uuid4
 
+from . import __version__
 
-ROOT_DIR = Path(os.environ.get("IDS_PRODUCT_HOME", Path(__file__).resolve().parents[1])).resolve()
+PACKAGE_DIR = Path(__file__).resolve().parent
+SOURCE_ROOT = PACKAGE_DIR.parent.resolve()
+DEFAULT_HOME_DIR = Path.home() / ".ids-sentinel-terminal"
+IS_SOURCE_CHECKOUT = (SOURCE_ROOT / ".git").exists() and (SOURCE_ROOT / "kddtrain.csv").exists() and (SOURCE_ROOT / "kddtest.csv").exists()
+ENV_ROOT = os.environ.get("IDS_PRODUCT_HOME")
+ROOT_DIR = Path(ENV_ROOT).expanduser().resolve() if ENV_ROOT else (SOURCE_ROOT if IS_SOURCE_CHECKOUT else DEFAULT_HOME_DIR.resolve())
+RUNTIME_MODE = "override" if ENV_ROOT else ("source" if IS_SOURCE_CHECKOUT else "installed")
+BUNDLED_SEED_FILES = {
+    "kddtrain.csv": "kddtrain.csv",
+    "kddtest.csv": "kddtest.csv",
+    "automation/product/self_learning_model.json": "self_learning_model.json",
+    "automation/product/iocs.json": "iocs.json",
+}
+
+
+def _copy_bundled_asset(asset_name: str, destination: Path) -> None:
+    resource = importlib.resources.files("ids_app").joinpath("assets", asset_name)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with importlib.resources.as_file(resource) as source_path:
+        shutil.copy2(source_path, destination)
+
+
+def bootstrap_runtime_home() -> None:
+    if RUNTIME_MODE == "source":
+        return
+    ROOT_DIR.mkdir(parents=True, exist_ok=True)
+    for relative_target, asset_name in BUNDLED_SEED_FILES.items():
+        destination = ROOT_DIR / relative_target
+        if destination.exists():
+            continue
+        _copy_bundled_asset(asset_name, destination)
+
+
+bootstrap_runtime_home()
+
 TRAIN_CSV = ROOT_DIR / "kddtrain.csv"
 TEST_CSV = ROOT_DIR / "kddtest.csv"
 PRODUCT_DIR = ROOT_DIR / "automation" / "product"
@@ -251,7 +287,7 @@ def resolve_repo_path(path_text: str | None, default: Path = TEST_CSV) -> Path:
     try:
         resolved.relative_to(ROOT_DIR)
     except ValueError:
-        raise ValueError("path must stay inside the project directory")
+        raise ValueError("path must stay inside the IDS Sentinel home directory")
     return resolved
 
 
@@ -338,7 +374,7 @@ def resolve_any_product_path(path_text: str | None, default: Path = TEST_CSV) ->
     try:
         resolved.relative_to(ROOT_DIR)
     except ValueError:
-        raise ValueError("path must stay inside the project directory")
+        raise ValueError("path must stay inside the IDS Sentinel home directory")
     return resolved
 
 
@@ -1558,7 +1594,7 @@ def shell_path(path_text: str | None = None) -> Path:
     try:
         resolved.relative_to(ROOT_DIR)
     except ValueError:
-        raise ValueError("path must stay inside the project directory")
+        raise ValueError("path must stay inside the IDS Sentinel home directory")
     return resolved
 
 
@@ -1676,6 +1712,12 @@ def shell_stat(path_text: str) -> None:
 
 def show_status(json_output: bool = False) -> None:
     payload = {
+        "installation": {
+            "version": __version__,
+            "runtime_mode": RUNTIME_MODE,
+            "home_dir": str(ROOT_DIR),
+            "env_override": bool(ENV_ROOT),
+        },
         "datasets": summarize_all_datasets(),
         "model": read_json(MODEL_PATH),
         "latest_export": latest_export_summary(),
@@ -1687,6 +1729,11 @@ def show_status(json_output: bool = False) -> None:
         return
 
     section("IDS Sentinel Terminal Status")
+    print(
+        f"Version: {payload['installation']['version']} | mode: {payload['installation']['runtime_mode']} | "
+        f"home: {payload['installation']['home_dir']}"
+    )
+    print()
     dataset_rows = []
     for name, item in payload["datasets"].items():
         dataset_rows.append(
@@ -2120,6 +2167,7 @@ def run_shell_command(raw: str) -> bool:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="IDS Sentinel Terminal for defensive CSV traffic analysis and local triage.")
     parser.add_argument("--json", action="store_true", help="Print JSON for commands that support it.")
+    parser.add_argument("--version", action="version", version=f"IDS Sentinel Terminal {__version__}")
     subparsers = parser.add_subparsers(dest="command")
 
     subparsers.add_parser("shell", help="Open IDS Sentinel Terminal interactive mode.")
@@ -2206,10 +2254,20 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def normalize_global_args(argv: list[str] | None) -> list[str] | None:
+    if argv is None:
+        return None
+    normalized = list(argv)
+    if "--json" in normalized:
+        normalized = [value for value in normalized if value != "--json"]
+        normalized.insert(0, "--json")
+    return normalized
+
+
 def main(argv: list[str] | None = None) -> int:
     ensure_product_dirs()
     parser = build_parser()
-    args = parser.parse_args(argv)
+    args = parser.parse_args(normalize_global_args(argv))
 
     try:
         if args.command is None or args.command == "shell":

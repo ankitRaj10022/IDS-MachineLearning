@@ -7,15 +7,12 @@ if (-not (Get-Command pyinstaller -ErrorAction SilentlyContinue)) {
     python -m pip install pyinstaller
 }
 
-$env:IDS_PRODUCT_HOME = $root
 pyinstaller `
   --noconfirm `
   --clean `
   --name ids-sentinel-terminal `
-  --add-data "kddtrain.csv;." `
-  --add-data "kddtest.csv;." `
   --add-data "README.md;." `
-  --add-data "automation\product\self_learning_model.json;automation\product" `
+  --collect-data ids_app `
   --collect-submodules ids_app `
   ids_app\product_app.py
 

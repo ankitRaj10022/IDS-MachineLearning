@@ -45,7 +45,7 @@ class IDSProductGUI:
         self.hunt_var = tk.StringVar(value="dos_flood")
         self.host_var = tk.StringVar(value="127.0.0.1")
         self.ports_var = tk.StringVar(value="common")
-        self.file_path_var = tk.StringVar(value="terminal.cmd")
+        self.file_path_var = tk.StringVar(value="automation/product/self_learning_model.json")
 
         self._configure_theme()
         self._build_layout()

@@ -1,0 +1,764 @@
+{
+  "version": 1,
+  "created_at": "2026-05-06T04:46:09+00:00",
+  "model_type": "streaming_gaussian_profile",
+  "description": "Pure-Python self-learning profile built from labeled IDS CSV rows and terminal-generated analysis exports.",
+  "features": [
+    "duration",
+    "protocol_type",
+    "service",
+    "flag",
+    "src_bytes",
+    "dst_bytes",
+    "land",
+    "wrong_fragment",
+    "urgent",
+    "hot",
+    "num_failed_logins",
+    "logged_in",
+    "num_compromised",
+    "root_shell",
+    "su_attempted",
+    "num_root",
+    "num_file_creations",
+    "num_shells",
+    "num_access_files",
+    "num_outbound_cmds",
+    "is_host_login",
+    "is_guest_login",
+    "count",
+    "srv_count",
+    "serror_rate",
+    "srv_serror_rate",
+    "rerror_rate",
+    "srv_rerror_rate",
+    "same_srv_rate",
+    "diff_srv_rate",
+    "srv_diff_host_rate",
+    "dst_host_count",
+    "dst_host_srv_count",
+    "dst_host_same_srv_rate",
+    "dst_host_diff_srv_rate",
+    "dst_host_same_src_port_rate",
+    "dst_host_srv_diff_host_rate",
+    "dst_host_serror_rate",
+    "dst_host_srv_serror_rate",
+    "dst_host_rerror_rate",
+    "dst_host_srv_rerror_rate"
+  ],
+  "labels": {
+    "0": {
+      "name": "normal",
+      "count": 99541,
+      "prior": 0.19702466841243732,
+      "features": [
+        {
+          "count": 99541,
+          "mean": 211.92420209,
+          "variance": 1807562.559123,
+          "min": 0.0,
+          "max": 58329.0
+        },
+        {
+          "count": 99541,
+          "mean": 1.22390774,
+          "variance": 0.19999542,
+          "min": 1.0,
+          "max": 3.0
+        },
+        {
+          "count": 99541,
+          "mean": 12.62034739,
+          "variance": 321.02732116,
+          "min": 1.0,
+          "max": 65.0
+        },
+        {
+          "count": 99541,
+          "mean": 1.49614732,
+          "variance": 4.1817337,
+          "min": 1.0,
+          "max": 10.0
+        },
+        {
+          "count": 99541,
+          "mean": 1151.5230508,
+          "variance": 1147351938.380843,
+          "min": 0.0,
+          "max": 2194619.0
+        },
+        {
+          "count": 99541,
+          "mean": 3373.12601842,
+          "variance": 1385143722.3633213,
+          "min": 0.0,
+          "max": 5134218.0
+        },
+        {
+          "count": 99541,
+          "mean": 1.005e-05,
+          "variance": 1.005e-05,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.0,
+          "variance": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        {
+          "count": 99541,
+          "mean": 3.014e-05,
+          "variance": 9.042e-05,
+          "min": 0.0,
+          "max": 3.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.04475543,
+          "variance": 0.73797081,
+          "min": 0.0,
+          "max": 30.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00018083,
+          "variance": 0.00042191,
+          "min": 0.0,
+          "max": 4.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.71896003,
+          "variance": 0.20205854,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.02788801,
+          "variance": 16.00452665,
+          "min": 0.0,
+          "max": 884.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00023106,
+          "variance": 0.00023101,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00017078,
+          "variance": 0.00029131,
+          "min": 0.0,
+          "max": 2.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.05481159,
+          "variance": 20.05283251,
+          "min": 0.0,
+          "max": 993.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00461117,
+          "variance": 0.04023391,
+          "min": 0.0,
+          "max": 28.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00043198,
+          "variance": 0.0004318,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00498287,
+          "variance": 0.00654539,
+          "min": 0.0,
+          "max": 8.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.0,
+          "variance": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.0,
+          "variance": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00385771,
+          "variance": 0.00384286,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 8.1410675,
+          "variance": 308.24767059,
+          "min": 0.0,
+          "max": 511.0
+        },
+        {
+          "count": 99541,
+          "mean": 10.92626154,
+          "variance": 467.71101828,
+          "min": 0.0,
+          "max": 510.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00160225,
+          "variance": 0.00079136,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.0018085,
+          "variance": 0.00072296,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.05472951,
+          "variance": 0.05139123,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.05501843,
+          "variance": 0.05085975,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.9856208,
+          "variance": 0.00843631,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.01816337,
+          "variance": 0.01357084,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.13470459,
+          "variance": 0.07744364,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 149.09667373,
+          "variance": 10685.50599466,
+          "min": 0.0,
+          "max": 255.0
+        },
+        {
+          "count": 99541,
+          "mean": 202.56859987,
+          "variance": 7505.25395636,
+          "min": 0.0,
+          "max": 255.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.84665987,
+          "variance": 0.09222341,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.05568992,
+          "variance": 0.03187202,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.13231563,
+          "variance": 0.07791054,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.02385771,
+          "variance": 0.00241202,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.00214344,
+          "variance": 0.00087347,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.0011756,
+          "variance": 0.00033946,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.05658201,
+          "variance": 0.04962295,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 99541,
+          "mean": 0.05468711,
+          "variance": 0.04695941,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ]
+    },
+    "1": {
+      "name": "attack",
+      "count": 405680,
+      "prior": 0.8029753315875626,
+      "features": [
+        {
+          "count": 405680,
+          "mean": 6.49462384,
+          "variance": 158498.59359808,
+          "min": 0.0,
+          "max": 42448.0
+        },
+        {
+          "count": 405680,
+          "mean": 2.4377884,
+          "variance": 0.80456692,
+          "min": 1.0,
+          "max": 3.0
+        },
+        {
+          "count": 405680,
+          "mean": 45.62930142,
+          "variance": 189.74896777,
+          "min": 1.0,
+          "max": 70.0
+        },
+        {
+          "count": 405680,
+          "mean": 2.57305758,
+          "variance": 7.34395105,
+          "min": 1.0,
+          "max": 10.0
+        },
+        {
+          "count": 405680,
+          "mean": 3673.10266959,
+          "variance": 1196368805916.1626,
+          "min": 0.0,
+          "max": 693375640.0
+        },
+        {
+          "count": 405680,
+          "mean": 248.68854023,
+          "variance": 989218365.7204053,
+          "min": 0.0,
+          "max": 5155468.0
+        },
+        {
+          "count": 405680,
+          "mean": 5.176e-05,
+          "variance": 5.176e-05,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.00783376,
+          "variance": 0.02211873,
+          "min": 0.0,
+          "max": 3.0
+        },
+        {
+          "count": 405680,
+          "mean": 9.86e-06,
+          "variance": 1.479e-05,
+          "min": 0.0,
+          "max": 2.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.03136216,
+          "variance": 0.56816345,
+          "min": 0.0,
+          "max": 28.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.0001405,
+          "variance": 0.00018979,
+          "min": 0.0,
+          "max": 5.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.00813696,
+          "variance": 0.00807077,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.00560047,
+          "variance": 0.01114989,
+          "min": 0.0,
+          "max": 38.0
+        },
+        {
+          "count": 405680,
+          "mean": 7.888e-05,
+          "variance": 7.887e-05,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 2.46e-06,
+          "variance": 2.46e-06,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.00038207,
+          "variance": 0.01232733,
+          "min": 0.0,
+          "max": 54.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.00018734,
+          "variance": 0.00144446,
+          "min": 0.0,
+          "max": 21.0
+        },
+        {
+          "count": 405680,
+          "mean": 2.711e-05,
+          "variance": 4.19e-05,
+          "min": 0.0,
+          "max": 2.0
+        },
+        {
+          "count": 405680,
+          "mean": 2.711e-05,
+          "variance": 3.204e-05,
+          "min": 0.0,
+          "max": 2.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.0,
+          "variance": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.0,
+          "variance": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.00077401,
+          "variance": 0.00077341,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 413.38936107,
+          "variance": 24245.67741018,
+          "min": 0.0,
+          "max": 511.0
+        },
+        {
+          "count": 405680,
+          "mean": 364.77010945,
+          "variance": 50609.53320716,
+          "min": 0.0,
+          "max": 511.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.21478165,
+          "variance": 0.16820709,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.21463705,
+          "variance": 0.16853029,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.05652603,
+          "variance": 0.05282404,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.05680285,
+          "variance": 0.05325099,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.74963119,
+          "variance": 0.17164369,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.02117787,
+          "variance": 0.00497518,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.00321019,
+          "variance": 0.00284733,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 253.07129018,
+          "variance": 441.56695618,
+          "min": 1.0,
+          "max": 255.0
+        },
+        {
+          "count": 405680,
+          "mean": 186.87488415,
+          "variance": 11934.84156807,
+          "min": 1.0,
+          "max": 255.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.73728569,
+          "variance": 0.18223473,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.02411672,
+          "variance": 0.0065874,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.72200084,
+          "variance": 0.19993789,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.00235447,
+          "variance": 0.00148341,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.21473548,
+          "variance": 0.16811924,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.21460913,
+          "variance": 0.16849133,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.05694091,
+          "variance": 0.05268787,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "count": 405680,
+          "mean": 0.05653187,
+          "variance": 0.05308389,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ]
+    }
+  },
+  "total_rows": 505221,
+  "sources": [
+    {
+      "path": "kddtrain.csv",
+      "rows_used": 494021,
+      "label_counts": {
+        "0": 97278,
+        "1": 396743
+      }
+    },
+    {
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_081928.csv",
+      "rows_used": 100,
+      "label_counts": {
+        "0": 77,
+        "1": 23
+      }
+    },
+    {
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_081949.csv",
+      "rows_used": 100,
+      "label_counts": {
+        "0": 77,
+        "1": 23
+      }
+    },
+    {
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_082152.csv",
+      "rows_used": 5000,
+      "label_counts": {
+        "0": 703,
+        "1": 4297
+      }
+    },
+    {
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_084127.csv",
+      "rows_used": 1000,
+      "label_counts": {
+        "0": 703,
+        "1": 297
+      }
+    },
+    {
+      "path": "automation\\product\\exports\\traffic_analysis_20260506_101531.csv",
+      "rows_used": 5000,
+      "label_counts": {
+        "0": 703,
+        "1": 4297
+      }
+    }
+  ],
+  "top_indicators": [
+    {
+      "feature": "count",
+      "separation": 3.657428,
+      "normal_mean": 8.141068,
+      "attack_mean": 413.389361
+    },
+    {
+      "feature": "srv_count",
+      "separation": 2.21418,
+      "normal_mean": 10.926262,
+      "attack_mean": 364.770109
+    },
+    {
+      "feature": "logged_in",
+      "separation": 2.192973,
+      "normal_mean": 0.71896,
+      "attack_mean": 0.008137
+    },
+    {
+      "feature": "service",
+      "separation": 2.065529,
+      "normal_mean": 12.620347,
+      "attack_mean": 45.629301
+    },
+    {
+      "feature": "protocol_type",
+      "separation": 1.712784,
+      "normal_mean": 1.223908,
+      "attack_mean": 2.437788
+    },
+    {
+      "feature": "dst_host_same_src_port_rate",
+      "separation": 1.58209,
+      "normal_mean": 0.132316,
+      "attack_mean": 0.722001
+    },
+    {
+      "feature": "dst_host_count",
+      "separation": 1.393965,
+      "normal_mean": 149.096674,
+      "attack_mean": 253.07129
+    },
+    {
+      "feature": "same_srv_rate",
+      "separation": 0.786457,
+      "normal_mean": 0.985621,
+      "attack_mean": 0.749631
+    },
+    {
+      "feature": "dst_host_srv_serror_rate",
+      "separation": 0.734602,
+      "normal_mean": 0.001176,
+      "attack_mean": 0.214609
+    },
+    {
+      "feature": "serror_rate",
+      "separation": 0.733363,
+      "normal_mean": 0.001602,
+      "attack_mean": 0.214782
+    },
+    {
+      "feature": "srv_serror_rate",
+      "separation": 0.731605,
+      "normal_mean": 0.001808,
+      "attack_mean": 0.214637
+    },
+    {
+      "feature": "dst_host_serror_rate",
+      "separation": 0.731355,
+      "normal_mean": 0.002143,
+      "attack_mean": 0.214735
+    }
+  ]
+}
