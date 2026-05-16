@@ -1,0 +1,25 @@
+
+Network Connections
+===================
+Proto  Local                               Service       Remote     State      PID  
+-----  ----------------------------------  ------------  ---------  ---------  -----
+UDP    0.0.0.0:53                          domain        *:*        UDP        7524 
+TCP    0.0.0.0:135                         msrpc         0.0.0.0:0  LISTENING  1752 
+TCP    [::]:135                            msrpc         [::]:0     LISTENING  1752 
+UDP    172.25.144.1:137                    netbios-ns    *:*        UDP        4    
+UDP    192.168.1.201:137                   netbios-ns    *:*        UDP        4    
+UDP    172.25.144.1:138                    netbios-dgm   *:*        UDP        4    
+UDP    192.168.1.201:138                   netbios-dgm   *:*        UDP        4    
+TCP    172.25.144.1:139                    netbios-ssn   0.0.0.0:0  LISTENING  4    
+TCP    192.168.1.201:139                   netbios-ssn   0.0.0.0:0  LISTENING  4    
+TCP    0.0.0.0:445                         microsoft-ds  0.0.0.0:0  LISTENING  4    
+TCP    [::]:445                            microsoft-ds  [::]:0     LISTENING  4    
+TCP    127.0.0.1:1042                                    0.0.0.0:0  LISTENING  17384
+TCP    127.0.0.1:1043                                    0.0.0.0:0  LISTENING  17384
+UDP    0.0.0.0:1900                        ssdp          *:*        UDP        33920
+UDP    0.0.0.0:1900                        ssdp          *:*        UDP        33920
+UDP    127.0.0.1:1900                      ssdp          *:*        UDP        9328 
+UDP    172.25.144.1:1900                   ssdp          *:*        UDP        9328 
+UDP    192.168.1.201:1900                  ssdp          *:*        UDP        9328 
+UDP    [::1]:1900                          ssdp          *:*        UDP        9328 
+UDP    [fe80::22d6:a544:1365:aaf%45]:1900  ssdp          *:*        UDP        9328 

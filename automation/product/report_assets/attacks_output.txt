@@ -1,0 +1,24 @@
+
+Attack Distribution
+===================
+Set    Label   Rows     Share 
+-----  ------  -------  ------
+train  normal  97,278   19.69%
+train  attack  396,743  80.31%
+test   normal  60,593   19.48%
+test   attack  250,436  80.52%
+
+Learned Attack Indicators
+=========================
+Feature                      Separation  Normal Mean  Attack Mean
+---------------------------  ----------  -----------  -----------
+count                        3.6574      8.1411       413.3894   
+srv_count                    2.2142      10.9263      364.7701   
+logged_in                    2.1930      0.7190       0.0081     
+service                      2.0655      12.6203      45.6293    
+protocol_type                1.7128      1.2239       2.4378     
+dst_host_same_src_port_rate  1.5821      0.1323       0.7220     
+dst_host_count               1.3940      149.0967     253.0713   
+same_srv_rate                0.7865      0.9856       0.7496     
+dst_host_srv_serror_rate     0.7346      0.0012       0.2146     
+serror_rate                  0.7334      0.0016       0.2148     

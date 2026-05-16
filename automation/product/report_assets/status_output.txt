@@ -1,0 +1,27 @@
+
+IDS Sentinel Terminal Status
+============================
+Version: 0.2.0 | mode: source | home: C:\Users\danny\Desktop\Intrusion-Detection-Systems-master\IDS-MachineLearning
+
+Set    Path          Rows     Size      Normal  Attack   Attack Share
+-----  ------------  -------  --------  ------  -------  ------------
+train  kddtrain.csv  494,021  46.13 MB  97,278  396,743  80.31%      
+test   kddtest.csv   311,029  29.04 MB  60,593  250,436  80.52%      
+
+Self-Learning Model
+===================
+Model: streaming_gaussian_profile | rows learned: 505,221 | created: 2026-05-06T04:46:09+00:00
+Indicator                    Separation  Normal Mean  Attack Mean
+---------------------------  ----------  -----------  -----------
+count                        3.6574      8.1411       413.3894   
+srv_count                    2.2142      10.9263      364.7701   
+logged_in                    2.1930      0.7190       0.0081     
+service                      2.0655      12.6203      45.6293    
+protocol_type                1.7128      1.2239       2.4378     
+dst_host_same_src_port_rate  1.5821      0.1323       0.7220     
+
+Latest Downloadable Analysis
+============================
+CSV:  automation\product\exports\traffic_analysis_20260506_101531.csv
+JSON: automation\product\exports\traffic_analysis_20260506_101531.json
+Rows: 5,000 | average risk: 0.8381

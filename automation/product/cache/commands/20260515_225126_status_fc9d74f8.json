@@ -1,0 +1,1880 @@
+{
+  "created_at": "2026-05-15T17:21:26+00:00",
+  "kind": "status",
+  "payload": {
+    "installation": {
+      "version": "0.2.0",
+      "runtime_mode": "source",
+      "home_dir": "C:\\Users\\danny\\Desktop\\Intrusion-Detection-Systems-master\\IDS-MachineLearning",
+      "env_override": false
+    },
+    "datasets": {
+      "train": {
+        "path": "kddtrain.csv",
+        "rows": 494021,
+        "malformed_rows": 0,
+        "columns": 42,
+        "size_mb": 46.13,
+        "label_counts": {
+          "0": 97278,
+          "1": 396743
+        },
+        "attack_share": 0.803089,
+        "normal_share": 0.196911,
+        "total_src_bytes": 1494715024,
+        "total_dst_bytes": 429073257,
+        "top_protocols": [
+          [
+            "3",
+            283602
+          ],
+          [
+            "1",
+            190065
+          ],
+          [
+            "2",
+            20354
+          ]
+        ],
+        "top_services": [
+          [
+            "54",
+            281400
+          ],
+          [
+            "24",
+            110893
+          ],
+          [
+            "1",
+            64293
+          ],
+          [
+            "19",
+            9723
+          ],
+          [
+            "29",
+            7237
+          ],
+          [
+            "57",
+            5863
+          ],
+          [
+            "49",
+            4721
+          ],
+          [
+            "55",
+            1642
+          ]
+        ],
+        "top_flags": [
+          [
+            "1",
+            378440
+          ],
+          [
+            "6",
+            87007
+          ],
+          [
+            "10",
+            26875
+          ],
+          [
+            "7",
+            903
+          ],
+          [
+            "9",
+            579
+          ],
+          [
+            "2",
+            107
+          ],
+          [
+            "5",
+            57
+          ],
+          [
+            "4",
+            32
+          ]
+        ]
+      },
+      "test": {
+        "path": "kddtest.csv",
+        "rows": 311029,
+        "malformed_rows": 0,
+        "columns": 42,
+        "size_mb": 29.04,
+        "label_counts": {
+          "0": 60593,
+          "1": 250436
+        },
+        "attack_share": 0.805185,
+        "normal_share": 0.194815,
+        "total_src_bytes": 538609601,
+        "total_dst_bytes": 232647728,
+        "top_protocols": [
+          [
+            "3",
+            164969
+          ],
+          [
+            "1",
+            119357
+          ],
+          [
+            "2",
+            26703
+          ]
+        ],
+        "top_services": [
+          [
+            "54",
+            164352
+          ],
+          [
+            "24",
+            78510
+          ],
+          [
+            "1",
+            41237
+          ],
+          [
+            "19",
+            8268
+          ],
+          [
+            "26",
+            3972
+          ],
+          [
+            "57",
+            3160
+          ],
+          [
+            "49",
+            2223
+          ],
+          [
+            "29",
+            2185
+          ]
+        ],
+        "top_flags": [
+          [
+            "1",
+            248379
+          ],
+          [
+            "10",
+            41945
+          ],
+          [
+            "6",
+            18012
+          ],
+          [
+            "9",
+            1393
+          ],
+          [
+            "7",
+            872
+          ],
+          [
+            "3",
+            289
+          ],
+          [
+            "2",
+            84
+          ],
+          [
+            "5",
+            27
+          ]
+        ]
+      }
+    },
+    "model": {
+      "version": 1,
+      "created_at": "2026-05-06T04:46:09+00:00",
+      "model_type": "streaming_gaussian_profile",
+      "description": "Pure-Python self-learning profile built from labeled IDS CSV rows and terminal-generated analysis exports.",
+      "features": [
+        "duration",
+        "protocol_type",
+        "service",
+        "flag",
+        "src_bytes",
+        "dst_bytes",
+        "land",
+        "wrong_fragment",
+        "urgent",
+        "hot",
+        "num_failed_logins",
+        "logged_in",
+        "num_compromised",
+        "root_shell",
+        "su_attempted",
+        "num_root",
+        "num_file_creations",
+        "num_shells",
+        "num_access_files",
+        "num_outbound_cmds",
+        "is_host_login",
+        "is_guest_login",
+        "count",
+        "srv_count",
+        "serror_rate",
+        "srv_serror_rate",
+        "rerror_rate",
+        "srv_rerror_rate",
+        "same_srv_rate",
+        "diff_srv_rate",
+        "srv_diff_host_rate",
+        "dst_host_count",
+        "dst_host_srv_count",
+        "dst_host_same_srv_rate",
+        "dst_host_diff_srv_rate",
+        "dst_host_same_src_port_rate",
+        "dst_host_srv_diff_host_rate",
+        "dst_host_serror_rate",
+        "dst_host_srv_serror_rate",
+        "dst_host_rerror_rate",
+        "dst_host_srv_rerror_rate"
+      ],
+      "labels": {
+        "0": {
+          "name": "normal",
+          "count": 99541,
+          "prior": 0.19702466841243732,
+          "features": [
+            {
+              "count": 99541,
+              "mean": 211.92420209,
+              "variance": 1807562.559123,
+              "min": 0.0,
+              "max": 58329.0
+            },
+            {
+              "count": 99541,
+              "mean": 1.22390774,
+              "variance": 0.19999542,
+              "min": 1.0,
+              "max": 3.0
+            },
+            {
+              "count": 99541,
+              "mean": 12.62034739,
+              "variance": 321.02732116,
+              "min": 1.0,
+              "max": 65.0
+            },
+            {
+              "count": 99541,
+              "mean": 1.49614732,
+              "variance": 4.1817337,
+              "min": 1.0,
+              "max": 10.0
+            },
+            {
+              "count": 99541,
+              "mean": 1151.5230508,
+              "variance": 1147351938.380843,
+              "min": 0.0,
+              "max": 2194619.0
+            },
+            {
+              "count": 99541,
+              "mean": 3373.12601842,
+              "variance": 1385143722.3633213,
+              "min": 0.0,
+              "max": 5134218.0
+            },
+            {
+              "count": 99541,
+              "mean": 1.005e-05,
+              "variance": 1.005e-05,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.0,
+              "variance": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            {
+              "count": 99541,
+              "mean": 3.014e-05,
+              "variance": 9.042e-05,
+              "min": 0.0,
+              "max": 3.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.04475543,
+              "variance": 0.73797081,
+              "min": 0.0,
+              "max": 30.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00018083,
+              "variance": 0.00042191,
+              "min": 0.0,
+              "max": 4.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.71896003,
+              "variance": 0.20205854,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.02788801,
+              "variance": 16.00452665,
+              "min": 0.0,
+              "max": 884.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00023106,
+              "variance": 0.00023101,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00017078,
+              "variance": 0.00029131,
+              "min": 0.0,
+              "max": 2.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.05481159,
+              "variance": 20.05283251,
+              "min": 0.0,
+              "max": 993.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00461117,
+              "variance": 0.04023391,
+              "min": 0.0,
+              "max": 28.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00043198,
+              "variance": 0.0004318,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00498287,
+              "variance": 0.00654539,
+              "min": 0.0,
+              "max": 8.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.0,
+              "variance": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.0,
+              "variance": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00385771,
+              "variance": 0.00384286,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 8.1410675,
+              "variance": 308.24767059,
+              "min": 0.0,
+              "max": 511.0
+            },
+            {
+              "count": 99541,
+              "mean": 10.92626154,
+              "variance": 467.71101828,
+              "min": 0.0,
+              "max": 510.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00160225,
+              "variance": 0.00079136,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.0018085,
+              "variance": 0.00072296,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.05472951,
+              "variance": 0.05139123,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.05501843,
+              "variance": 0.05085975,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.9856208,
+              "variance": 0.00843631,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.01816337,
+              "variance": 0.01357084,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.13470459,
+              "variance": 0.07744364,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 149.09667373,
+              "variance": 10685.50599466,
+              "min": 0.0,
+              "max": 255.0
+            },
+            {
+              "count": 99541,
+              "mean": 202.56859987,
+              "variance": 7505.25395636,
+              "min": 0.0,
+              "max": 255.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.84665987,
+              "variance": 0.09222341,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.05568992,
+              "variance": 0.03187202,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.13231563,
+              "variance": 0.07791054,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.02385771,
+              "variance": 0.00241202,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.00214344,
+              "variance": 0.00087347,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.0011756,
+              "variance": 0.00033946,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.05658201,
+              "variance": 0.04962295,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 99541,
+              "mean": 0.05468711,
+              "variance": 0.04695941,
+              "min": 0.0,
+              "max": 1.0
+            }
+          ]
+        },
+        "1": {
+          "name": "attack",
+          "count": 405680,
+          "prior": 0.8029753315875626,
+          "features": [
+            {
+              "count": 405680,
+              "mean": 6.49462384,
+              "variance": 158498.59359808,
+              "min": 0.0,
+              "max": 42448.0
+            },
+            {
+              "count": 405680,
+              "mean": 2.4377884,
+              "variance": 0.80456692,
+              "min": 1.0,
+              "max": 3.0
+            },
+            {
+              "count": 405680,
+              "mean": 45.62930142,
+              "variance": 189.74896777,
+              "min": 1.0,
+              "max": 70.0
+            },
+            {
+              "count": 405680,
+              "mean": 2.57305758,
+              "variance": 7.34395105,
+              "min": 1.0,
+              "max": 10.0
+            },
+            {
+              "count": 405680,
+              "mean": 3673.10266959,
+              "variance": 1196368805916.1626,
+              "min": 0.0,
+              "max": 693375640.0
+            },
+            {
+              "count": 405680,
+              "mean": 248.68854023,
+              "variance": 989218365.7204053,
+              "min": 0.0,
+              "max": 5155468.0
+            },
+            {
+              "count": 405680,
+              "mean": 5.176e-05,
+              "variance": 5.176e-05,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.00783376,
+              "variance": 0.02211873,
+              "min": 0.0,
+              "max": 3.0
+            },
+            {
+              "count": 405680,
+              "mean": 9.86e-06,
+              "variance": 1.479e-05,
+              "min": 0.0,
+              "max": 2.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.03136216,
+              "variance": 0.56816345,
+              "min": 0.0,
+              "max": 28.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.0001405,
+              "variance": 0.00018979,
+              "min": 0.0,
+              "max": 5.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.00813696,
+              "variance": 0.00807077,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.00560047,
+              "variance": 0.01114989,
+              "min": 0.0,
+              "max": 38.0
+            },
+            {
+              "count": 405680,
+              "mean": 7.888e-05,
+              "variance": 7.887e-05,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 2.46e-06,
+              "variance": 2.46e-06,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.00038207,
+              "variance": 0.01232733,
+              "min": 0.0,
+              "max": 54.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.00018734,
+              "variance": 0.00144446,
+              "min": 0.0,
+              "max": 21.0
+            },
+            {
+              "count": 405680,
+              "mean": 2.711e-05,
+              "variance": 4.19e-05,
+              "min": 0.0,
+              "max": 2.0
+            },
+            {
+              "count": 405680,
+              "mean": 2.711e-05,
+              "variance": 3.204e-05,
+              "min": 0.0,
+              "max": 2.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.0,
+              "variance": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.0,
+              "variance": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.00077401,
+              "variance": 0.00077341,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 413.38936107,
+              "variance": 24245.67741018,
+              "min": 0.0,
+              "max": 511.0
+            },
+            {
+              "count": 405680,
+              "mean": 364.77010945,
+              "variance": 50609.53320716,
+              "min": 0.0,
+              "max": 511.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.21478165,
+              "variance": 0.16820709,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.21463705,
+              "variance": 0.16853029,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.05652603,
+              "variance": 0.05282404,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.05680285,
+              "variance": 0.05325099,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.74963119,
+              "variance": 0.17164369,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.02117787,
+              "variance": 0.00497518,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.00321019,
+              "variance": 0.00284733,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 253.07129018,
+              "variance": 441.56695618,
+              "min": 1.0,
+              "max": 255.0
+            },
+            {
+              "count": 405680,
+              "mean": 186.87488415,
+              "variance": 11934.84156807,
+              "min": 1.0,
+              "max": 255.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.73728569,
+              "variance": 0.18223473,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.02411672,
+              "variance": 0.0065874,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.72200084,
+              "variance": 0.19993789,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.00235447,
+              "variance": 0.00148341,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.21473548,
+              "variance": 0.16811924,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.21460913,
+              "variance": 0.16849133,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.05694091,
+              "variance": 0.05268787,
+              "min": 0.0,
+              "max": 1.0
+            },
+            {
+              "count": 405680,
+              "mean": 0.05653187,
+              "variance": 0.05308389,
+              "min": 0.0,
+              "max": 1.0
+            }
+          ]
+        }
+      },
+      "total_rows": 505221,
+      "sources": [
+        {
+          "path": "kddtrain.csv",
+          "rows_used": 494021,
+          "label_counts": {
+            "0": 97278,
+            "1": 396743
+          }
+        },
+        {
+          "path": "automation\\product\\exports\\traffic_analysis_20260506_081928.csv",
+          "rows_used": 100,
+          "label_counts": {
+            "0": 77,
+            "1": 23
+          }
+        },
+        {
+          "path": "automation\\product\\exports\\traffic_analysis_20260506_081949.csv",
+          "rows_used": 100,
+          "label_counts": {
+            "0": 77,
+            "1": 23
+          }
+        },
+        {
+          "path": "automation\\product\\exports\\traffic_analysis_20260506_082152.csv",
+          "rows_used": 5000,
+          "label_counts": {
+            "0": 703,
+            "1": 4297
+          }
+        },
+        {
+          "path": "automation\\product\\exports\\traffic_analysis_20260506_084127.csv",
+          "rows_used": 1000,
+          "label_counts": {
+            "0": 703,
+            "1": 297
+          }
+        },
+        {
+          "path": "automation\\product\\exports\\traffic_analysis_20260506_101531.csv",
+          "rows_used": 5000,
+          "label_counts": {
+            "0": 703,
+            "1": 4297
+          }
+        }
+      ],
+      "top_indicators": [
+        {
+          "feature": "count",
+          "separation": 3.657428,
+          "normal_mean": 8.141068,
+          "attack_mean": 413.389361
+        },
+        {
+          "feature": "srv_count",
+          "separation": 2.21418,
+          "normal_mean": 10.926262,
+          "attack_mean": 364.770109
+        },
+        {
+          "feature": "logged_in",
+          "separation": 2.192973,
+          "normal_mean": 0.71896,
+          "attack_mean": 0.008137
+        },
+        {
+          "feature": "service",
+          "separation": 2.065529,
+          "normal_mean": 12.620347,
+          "attack_mean": 45.629301
+        },
+        {
+          "feature": "protocol_type",
+          "separation": 1.712784,
+          "normal_mean": 1.223908,
+          "attack_mean": 2.437788
+        },
+        {
+          "feature": "dst_host_same_src_port_rate",
+          "separation": 1.58209,
+          "normal_mean": 0.132316,
+          "attack_mean": 0.722001
+        },
+        {
+          "feature": "dst_host_count",
+          "separation": 1.393965,
+          "normal_mean": 149.096674,
+          "attack_mean": 253.07129
+        },
+        {
+          "feature": "same_srv_rate",
+          "separation": 0.786457,
+          "normal_mean": 0.985621,
+          "attack_mean": 0.749631
+        },
+        {
+          "feature": "dst_host_srv_serror_rate",
+          "separation": 0.734602,
+          "normal_mean": 0.001176,
+          "attack_mean": 0.214609
+        },
+        {
+          "feature": "serror_rate",
+          "separation": 0.733363,
+          "normal_mean": 0.001602,
+          "attack_mean": 0.214782
+        },
+        {
+          "feature": "srv_serror_rate",
+          "separation": 0.731605,
+          "normal_mean": 0.001808,
+          "attack_mean": 0.214637
+        },
+        {
+          "feature": "dst_host_serror_rate",
+          "separation": 0.731355,
+          "normal_mean": 0.002143,
+          "attack_mean": 0.214735
+        }
+      ]
+    },
+    "latest_export": {
+      "analysis_id": "scan-20260506_101531",
+      "created_at": "2026-05-06T04:45:32+00:00",
+      "source_file": "kddtest.csv",
+      "rows_analyzed": 5000,
+      "malformed_rows": 0,
+      "limit": 5000,
+      "average_risk_score": 0.8381,
+      "actual_counts": {
+        "0": 703,
+        "1": 4297
+      },
+      "predicted_counts": {
+        "0": 810,
+        "1": 4190
+      },
+      "risk_counts": {
+        "low": 810,
+        "critical": 4188,
+        "medium": 1,
+        "high": 1
+      },
+      "family_counts": {
+        "normal": 688,
+        "probe_scan": 115,
+        "credential_abuse": 2,
+        "network_attack": 8,
+        "dos_flood": 4181,
+        "payload_or_exfiltration": 2,
+        "malware_like_activity": 3,
+        "privilege_escalation": 1
+      },
+      "top_protocols": [
+        [
+          "3",
+          4192
+        ],
+        [
+          "1",
+          552
+        ],
+        [
+          "2",
+          256
+        ]
+      ],
+      "top_services": [
+        [
+          "54",
+          4190
+        ],
+        [
+          "1",
+          450
+        ],
+        [
+          "24",
+          185
+        ],
+        [
+          "57",
+          71
+        ],
+        [
+          "19",
+          57
+        ],
+        [
+          "49",
+          22
+        ],
+        [
+          "65",
+          5
+        ],
+        [
+          "3",
+          5
+        ]
+      ],
+      "top_flags": [
+        [
+          "1",
+          4997
+        ],
+        [
+          "7",
+          1
+        ],
+        [
+          "5",
+          1
+        ],
+        [
+          "10",
+          1
+        ]
+      ],
+      "metrics": {
+        "accuracy": 0.9762,
+        "precision": 0.998568,
+        "recall": 0.973703,
+        "f1": 0.985979,
+        "tp": 4184,
+        "tn": 697,
+        "fp": 6,
+        "fn": 113
+      },
+      "model_created_at": "2026-05-06T04:44:52+00:00",
+      "export_csv": "automation\\product\\exports\\traffic_analysis_20260506_101531.csv",
+      "export_json": "automation\\product\\exports\\traffic_analysis_20260506_101531.json"
+    },
+    "recent_runs": [
+      {
+        "run_id": "dnn-1772763347b9",
+        "job_id": "terminal-auto",
+        "kind": "dnn_train",
+        "created_at": "2026-05-05T03:19:14.310697+00:00",
+        "config": {
+          "architectures": [
+            1
+          ],
+          "train_sample": 5000,
+          "test_sample": 2000,
+          "epochs": 1,
+          "batch_size": 128,
+          "profile": "fast",
+          "random_state": 42
+        },
+        "dataset": {
+          "train_rows": 5000,
+          "test_rows": 2000,
+          "feature_count": 41
+        },
+        "results": [
+          {
+            "id": "dnn_1_layer",
+            "label": "DNN 1 Layer",
+            "training_seconds": 0.47,
+            "metrics": {
+              "accuracy": 0.92,
+              "precision": 0.918108,
+              "recall": 0.98882,
+              "f1": 0.952153,
+              "support": 2000,
+              "tp": 1592,
+              "tn": 248,
+              "fp": 142,
+              "fn": 18
+            },
+            "probability_summary": {
+              "min": 0.168777,
+              "mean": 0.792621,
+              "max": 0.947958
+            },
+            "history": {
+              "epochs": 1,
+              "best_accuracy": 0.9026,
+              "best_loss": 0.363292,
+              "final_accuracy": 0.9026,
+              "final_loss": 0.363292
+            },
+            "model_path": "runs/dnn-1772763347b9/models/dnn1.keras"
+          }
+        ],
+        "best_model": "dnn_1_layer"
+      },
+      {
+        "run_id": "classical-d7b00f74d926",
+        "job_id": "terminal-auto",
+        "kind": "classical_train",
+        "created_at": "2026-05-05T03:19:09.297116+00:00",
+        "config": {
+          "models": [
+            "logistic_regression",
+            "naive_bayes",
+            "decision_tree",
+            "adaboost",
+            "random_forest"
+          ],
+          "train_sample": 5000,
+          "test_sample": 2000,
+          "profile": "fast",
+          "random_state": 42
+        },
+        "dataset": {
+          "train_rows": 5000,
+          "test_rows": 2000,
+          "feature_count": 41
+        },
+        "results": [
+          {
+            "id": "adaboost",
+            "label": "AdaBoost",
+            "training_seconds": 0.407,
+            "metrics": {
+              "accuracy": 0.921,
+              "precision": 0.993207,
+              "recall": 0.908075,
+              "f1": 0.948735,
+              "support": 2000,
+              "tp": 1462,
+              "tn": 380,
+              "fp": 10,
+              "fn": 148
+            },
+            "probability_summary": {
+              "min": 0.265068,
+              "mean": 0.563496,
+              "max": 0.673029
+            },
+            "model_path": "runs/classical-d7b00f74d926/models/adaboost.joblib"
+          },
+          {
+            "id": "decision_tree",
+            "label": "Decision Tree",
+            "training_seconds": 0.015,
+            "metrics": {
+              "accuracy": 0.921,
+              "precision": 0.997942,
+              "recall": 0.903727,
+              "f1": 0.948501,
+              "support": 2000,
+              "tp": 1455,
+              "tn": 387,
+              "fp": 3,
+              "fn": 155
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.729,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-d7b00f74d926/models/decision_tree.joblib"
+          },
+          {
+            "id": "random_forest",
+            "label": "Random Forest",
+            "training_seconds": 0.316,
+            "metrics": {
+              "accuracy": 0.92,
+              "precision": 0.995219,
+              "recall": 0.904969,
+              "f1": 0.947951,
+              "support": 2000,
+              "tp": 1457,
+              "tn": 383,
+              "fp": 7,
+              "fn": 153
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.730015,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-d7b00f74d926/models/random_forest.joblib"
+          },
+          {
+            "id": "logistic_regression",
+            "label": "Logistic Regression",
+            "training_seconds": 0.364,
+            "metrics": {
+              "accuracy": 0.9095,
+              "precision": 0.985724,
+              "recall": 0.900621,
+              "f1": 0.941253,
+              "support": 2000,
+              "tp": 1450,
+              "tn": 369,
+              "fp": 21,
+              "fn": 160
+            },
+            "probability_summary": {
+              "min": 0.003524,
+              "mean": 0.708454,
+              "max": 0.999863
+            },
+            "model_path": "runs/classical-d7b00f74d926/models/logistic_regression.joblib"
+          },
+          {
+            "id": "naive_bayes",
+            "label": "Gaussian Naive Bayes",
+            "training_seconds": 0.003,
+            "metrics": {
+              "accuracy": 0.9095,
+              "precision": 0.989049,
+              "recall": 0.897516,
+              "f1": 0.941062,
+              "support": 2000,
+              "tp": 1445,
+              "tn": 374,
+              "fp": 16,
+              "fn": 165
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.730647,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-d7b00f74d926/models/naive_bayes.joblib"
+          }
+        ],
+        "best_model": "adaboost"
+      },
+      {
+        "run_id": "dnn-dcefbda59cdb",
+        "job_id": "terminal",
+        "kind": "dnn_train",
+        "created_at": "2026-05-05T03:10:18.663632+00:00",
+        "config": {
+          "architectures": [
+            1
+          ],
+          "train_sample": 3000,
+          "test_sample": 1200,
+          "epochs": 1,
+          "batch_size": 128,
+          "profile": "fast",
+          "random_state": 42
+        },
+        "dataset": {
+          "train_rows": 3000,
+          "test_rows": 1200,
+          "feature_count": 41
+        },
+        "results": [
+          {
+            "id": "dnn_1_layer",
+            "label": "DNN 1 Layer",
+            "training_seconds": 1.053,
+            "metrics": {
+              "accuracy": 0.900833,
+              "precision": 0.893222,
+              "recall": 0.995859,
+              "f1": 0.941752,
+              "support": 1200,
+              "tp": 962,
+              "tn": 119,
+              "fp": 115,
+              "fn": 4
+            },
+            "probability_summary": {
+              "min": 0.400695,
+              "mean": 0.770569,
+              "max": 0.863311
+            },
+            "history": {
+              "epochs": 1,
+              "best_accuracy": 0.825667,
+              "best_loss": 0.483427,
+              "final_accuracy": 0.825667,
+              "final_loss": 0.483427
+            },
+            "model_path": "runs/dnn-dcefbda59cdb/models/dnn1.keras"
+          }
+        ],
+        "best_model": "dnn_1_layer"
+      },
+      {
+        "run_id": "classical-45fc41fedadd",
+        "job_id": "terminal",
+        "kind": "classical_train",
+        "created_at": "2026-05-05T03:09:43.504542+00:00",
+        "config": {
+          "models": [
+            "logistic_regression",
+            "naive_bayes",
+            "decision_tree",
+            "adaboost",
+            "random_forest"
+          ],
+          "train_sample": 3000,
+          "test_sample": 1200,
+          "profile": "fast",
+          "random_state": 42
+        },
+        "dataset": {
+          "train_rows": 3000,
+          "test_rows": 1200,
+          "feature_count": 41
+        },
+        "results": [
+          {
+            "id": "random_forest",
+            "label": "Random Forest",
+            "training_seconds": 0.404,
+            "metrics": {
+              "accuracy": 0.9275,
+              "precision": 1.0,
+              "recall": 0.909938,
+              "f1": 0.952846,
+              "support": 1200,
+              "tp": 879,
+              "tn": 234,
+              "fp": 0,
+              "fn": 87
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.727058,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-45fc41fedadd/models/random_forest.joblib"
+          },
+          {
+            "id": "adaboost",
+            "label": "AdaBoost",
+            "training_seconds": 0.292,
+            "metrics": {
+              "accuracy": 0.926667,
+              "precision": 0.996606,
+              "recall": 0.912008,
+              "f1": 0.952432,
+              "support": 1200,
+              "tp": 881,
+              "tn": 231,
+              "fp": 3,
+              "fn": 85
+            },
+            "probability_summary": {
+              "min": 0.272036,
+              "mean": 0.557741,
+              "max": 0.664778
+            },
+            "model_path": "runs/classical-45fc41fedadd/models/adaboost.joblib"
+          },
+          {
+            "id": "logistic_regression",
+            "label": "Logistic Regression",
+            "training_seconds": 0.476,
+            "metrics": {
+              "accuracy": 0.911667,
+              "precision": 0.985327,
+              "recall": 0.903727,
+              "f1": 0.942765,
+              "support": 1200,
+              "tp": 873,
+              "tn": 221,
+              "fp": 13,
+              "fn": 93
+            },
+            "probability_summary": {
+              "min": 0.006769,
+              "mean": 0.715482,
+              "max": 0.999533
+            },
+            "model_path": "runs/classical-45fc41fedadd/models/logistic_regression.joblib"
+          },
+          {
+            "id": "naive_bayes",
+            "label": "Gaussian Naive Bayes",
+            "training_seconds": 0.006,
+            "metrics": {
+              "accuracy": 0.910833,
+              "precision": 0.98641,
+              "recall": 0.901656,
+              "f1": 0.942131,
+              "support": 1200,
+              "tp": 871,
+              "tn": 222,
+              "fp": 12,
+              "fn": 95
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.735767,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-45fc41fedadd/models/naive_bayes.joblib"
+          },
+          {
+            "id": "decision_tree",
+            "label": "Decision Tree",
+            "training_seconds": 0.011,
+            "metrics": {
+              "accuracy": 0.856667,
+              "precision": 0.99625,
+              "recall": 0.825052,
+              "f1": 0.902605,
+              "support": 1200,
+              "tp": 797,
+              "tn": 231,
+              "fp": 3,
+              "fn": 169
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.666667,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-45fc41fedadd/models/decision_tree.joblib"
+          }
+        ],
+        "best_model": "random_forest"
+      },
+      {
+        "run_id": "classical-892cd7c2f6a0",
+        "job_id": "39c3f07e95844705b30bb046b7c93701",
+        "kind": "classical_train",
+        "created_at": "2026-05-04T16:53:48.440056+00:00",
+        "config": {
+          "models": [
+            "logistic_regression",
+            "naive_bayes",
+            "decision_tree",
+            "adaboost",
+            "random_forest"
+          ],
+          "train_sample": 5000,
+          "test_sample": 2000,
+          "profile": "fast",
+          "random_state": 42
+        },
+        "dataset": {
+          "train_rows": 5000,
+          "test_rows": 2000,
+          "feature_count": 41
+        },
+        "results": [
+          {
+            "id": "adaboost",
+            "label": "AdaBoost",
+            "training_seconds": 0.942,
+            "metrics": {
+              "accuracy": 0.921,
+              "precision": 0.993207,
+              "recall": 0.908075,
+              "f1": 0.948735,
+              "support": 2000,
+              "tp": 1462,
+              "tn": 380,
+              "fp": 10,
+              "fn": 148
+            },
+            "probability_summary": {
+              "min": 0.265068,
+              "mean": 0.563496,
+              "max": 0.673029
+            },
+            "model_path": "runs/classical-892cd7c2f6a0/models/adaboost.joblib"
+          },
+          {
+            "id": "decision_tree",
+            "label": "Decision Tree",
+            "training_seconds": 0.036,
+            "metrics": {
+              "accuracy": 0.921,
+              "precision": 0.997942,
+              "recall": 0.903727,
+              "f1": 0.948501,
+              "support": 2000,
+              "tp": 1455,
+              "tn": 387,
+              "fp": 3,
+              "fn": 155
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.729,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-892cd7c2f6a0/models/decision_tree.joblib"
+          },
+          {
+            "id": "random_forest",
+            "label": "Random Forest",
+            "training_seconds": 0.726,
+            "metrics": {
+              "accuracy": 0.92,
+              "precision": 0.995219,
+              "recall": 0.904969,
+              "f1": 0.947951,
+              "support": 2000,
+              "tp": 1457,
+              "tn": 383,
+              "fp": 7,
+              "fn": 153
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.730015,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-892cd7c2f6a0/models/random_forest.joblib"
+          },
+          {
+            "id": "logistic_regression",
+            "label": "Logistic Regression",
+            "training_seconds": 0.704,
+            "metrics": {
+              "accuracy": 0.9095,
+              "precision": 0.985724,
+              "recall": 0.900621,
+              "f1": 0.941253,
+              "support": 2000,
+              "tp": 1450,
+              "tn": 369,
+              "fp": 21,
+              "fn": 160
+            },
+            "probability_summary": {
+              "min": 0.003524,
+              "mean": 0.708454,
+              "max": 0.999863
+            },
+            "model_path": "runs/classical-892cd7c2f6a0/models/logistic_regression.joblib"
+          },
+          {
+            "id": "naive_bayes",
+            "label": "Gaussian Naive Bayes",
+            "training_seconds": 0.004,
+            "metrics": {
+              "accuracy": 0.9095,
+              "precision": 0.989049,
+              "recall": 0.897516,
+              "f1": 0.941062,
+              "support": 2000,
+              "tp": 1445,
+              "tn": 374,
+              "fp": 16,
+              "fn": 165
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.730647,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-892cd7c2f6a0/models/naive_bayes.joblib"
+          }
+        ],
+        "best_model": "adaboost"
+      },
+      {
+        "run_id": "dnn-29fd1f5f240b",
+        "job_id": "e4efa927fdcd4dc2ba58e41ceb8af5ce",
+        "kind": "dnn_train",
+        "created_at": "2026-05-04T16:52:33.307024+00:00",
+        "config": {
+          "architectures": [
+            1
+          ],
+          "train_sample": 5000,
+          "test_sample": 2000,
+          "epochs": 1,
+          "batch_size": 128,
+          "profile": "fast",
+          "random_state": 42
+        },
+        "dataset": {
+          "train_rows": 5000,
+          "test_rows": 2000,
+          "feature_count": 41
+        },
+        "results": [
+          {
+            "id": "dnn_1_layer",
+            "label": "DNN 1 Layer",
+            "training_seconds": 1.273,
+            "metrics": {
+              "accuracy": 0.916,
+              "precision": 0.912,
+              "recall": 0.991304,
+              "f1": 0.95,
+              "support": 2000,
+              "tp": 1596,
+              "tn": 236,
+              "fp": 154,
+              "fn": 14
+            },
+            "probability_summary": {
+              "min": 0.210737,
+              "mean": 0.801977,
+              "max": 0.943477
+            },
+            "history": {
+              "epochs": 1,
+              "best_accuracy": 0.8812,
+              "best_loss": 0.382257,
+              "final_accuracy": 0.8812,
+              "final_loss": 0.382257
+            },
+            "model_path": "runs/dnn-29fd1f5f240b/models/dnn1.keras"
+          }
+        ],
+        "best_model": "dnn_1_layer"
+      },
+      {
+        "run_id": "dnn-9612cd3f9981",
+        "job_id": "0ef98f5be8294bd4953e2ccc9b61f19c",
+        "kind": "dnn_train",
+        "created_at": "2026-05-04T16:50:49.902748+00:00",
+        "config": {
+          "architectures": [
+            1,
+            3
+          ],
+          "train_sample": 50000,
+          "test_sample": 15000,
+          "epochs": 3,
+          "batch_size": 128,
+          "profile": "fast",
+          "random_state": 42
+        },
+        "dataset": {
+          "train_rows": 50000,
+          "test_rows": 15000,
+          "feature_count": 41
+        },
+        "results": [
+          {
+            "id": "dnn_3_layer",
+            "label": "DNN 3 Layer",
+            "training_seconds": 22.849,
+            "metrics": {
+              "accuracy": 0.921467,
+              "precision": 0.997081,
+              "recall": 0.905117,
+              "f1": 0.948876,
+              "support": 15000,
+              "tp": 10932,
+              "tn": 2890,
+              "fp": 32,
+              "fn": 1146
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.724132,
+              "max": 1.0
+            },
+            "history": {
+              "epochs": 3,
+              "best_accuracy": 0.99626,
+              "best_loss": 0.012686,
+              "final_accuracy": 0.99626,
+              "final_loss": 0.012686
+            },
+            "model_path": "runs/dnn-9612cd3f9981/models/dnn3.keras"
+          },
+          {
+            "id": "dnn_1_layer",
+            "label": "DNN 1 Layer",
+            "training_seconds": 5.954,
+            "metrics": {
+              "accuracy": 0.906133,
+              "precision": 0.99062,
+              "recall": 0.89187,
+              "f1": 0.938655,
+              "support": 15000,
+              "tp": 10772,
+              "tn": 2820,
+              "fp": 102,
+              "fn": 1306
+            },
+            "probability_summary": {
+              "min": 0.000149,
+              "mean": 0.69896,
+              "max": 0.999992
+            },
+            "history": {
+              "epochs": 3,
+              "best_accuracy": 0.98756,
+              "best_loss": 0.026306,
+              "final_accuracy": 0.98756,
+              "final_loss": 0.026306
+            },
+            "model_path": "runs/dnn-9612cd3f9981/models/dnn1.keras"
+          }
+        ],
+        "best_model": "dnn_3_layer"
+      },
+      {
+        "run_id": "classical-4676bd9735c7",
+        "job_id": "f8ce165380d2480482574ab667d00482",
+        "kind": "classical_train",
+        "created_at": "2026-05-04T16:49:50.219648+00:00",
+        "config": {
+          "models": [
+            "logistic_regression",
+            "naive_bayes",
+            "decision_tree",
+            "adaboost",
+            "random_forest"
+          ],
+          "train_sample": 40000,
+          "test_sample": 15000,
+          "profile": "fast",
+          "random_state": 42
+        },
+        "dataset": {
+          "train_rows": 40000,
+          "test_rows": 15000,
+          "feature_count": 41
+        },
+        "results": [
+          {
+            "id": "random_forest",
+            "label": "Random Forest",
+            "training_seconds": 1.339,
+            "metrics": {
+              "accuracy": 0.9232,
+              "precision": 0.998267,
+              "recall": 0.906193,
+              "f1": 0.950004,
+              "support": 15000,
+              "tp": 10945,
+              "tn": 2903,
+              "fp": 19,
+              "fn": 1133
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.733314,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-4676bd9735c7/models/random_forest.joblib"
+          },
+          {
+            "id": "decision_tree",
+            "label": "Decision Tree",
+            "training_seconds": 0.479,
+            "metrics": {
+              "accuracy": 0.9228,
+              "precision": 0.997903,
+              "recall": 0.906027,
+              "f1": 0.949748,
+              "support": 15000,
+              "tp": 10943,
+              "tn": 2899,
+              "fp": 23,
+              "fn": 1135
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.731067,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-4676bd9735c7/models/decision_tree.joblib"
+          },
+          {
+            "id": "adaboost",
+            "label": "AdaBoost",
+            "training_seconds": 6.218,
+            "metrics": {
+              "accuracy": 0.921733,
+              "precision": 0.995006,
+              "recall": 0.907352,
+              "f1": 0.94916,
+              "support": 15000,
+              "tp": 10959,
+              "tn": 2867,
+              "fp": 55,
+              "fn": 1119
+            },
+            "probability_summary": {
+              "min": 0.415657,
+              "mean": 0.518662,
+              "max": 0.592831
+            },
+            "model_path": "runs/classical-4676bd9735c7/models/adaboost.joblib"
+          },
+          {
+            "id": "naive_bayes",
+            "label": "Gaussian Naive Bayes",
+            "training_seconds": 0.023,
+            "metrics": {
+              "accuracy": 0.9114,
+              "precision": 0.989972,
+              "recall": 0.899073,
+              "f1": 0.942335,
+              "support": 15000,
+              "tp": 10859,
+              "tn": 2812,
+              "fp": 110,
+              "fn": 1219
+            },
+            "probability_summary": {
+              "min": 0.0,
+              "mean": 0.732066,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-4676bd9735c7/models/naive_bayes.joblib"
+          },
+          {
+            "id": "logistic_regression",
+            "label": "Logistic Regression",
+            "training_seconds": 0.945,
+            "metrics": {
+              "accuracy": 0.902333,
+              "precision": 0.988134,
+              "recall": 0.889386,
+              "f1": 0.936163,
+              "support": 15000,
+              "tp": 10742,
+              "tn": 2793,
+              "fp": 129,
+              "fn": 1336
+            },
+            "probability_summary": {
+              "min": 0.000107,
+              "mean": 0.694586,
+              "max": 1.0
+            },
+            "model_path": "runs/classical-4676bd9735c7/models/logistic_regression.joblib"
+          }
+        ],
+        "best_model": "random_forest"
+      }
+    ]
+  }
+}

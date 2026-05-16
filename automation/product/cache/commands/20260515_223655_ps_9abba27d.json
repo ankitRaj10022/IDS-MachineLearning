@@ -1,0 +1,286 @@
+{
+  "created_at": "2026-05-15T17:06:55+00:00",
+  "kind": "ps",
+  "payload": [
+    {
+      "Image Name": "System Idle Process",
+      "PID": "0",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "8 K"
+    },
+    {
+      "Image Name": "System",
+      "PID": "4",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "132 K"
+    },
+    {
+      "Image Name": "Secure System",
+      "PID": "236",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "56,096 K"
+    },
+    {
+      "Image Name": "Registry",
+      "PID": "280",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "40,968 K"
+    },
+    {
+      "Image Name": "smss.exe",
+      "PID": "808",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "240 K"
+    },
+    {
+      "Image Name": "csrss.exe",
+      "PID": "1256",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "2,020 K"
+    },
+    {
+      "Image Name": "wininit.exe",
+      "PID": "1388",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "1,288 K"
+    },
+    {
+      "Image Name": "csrss.exe",
+      "PID": "1396",
+      "Session Name": "Console",
+      "Session#": "1",
+      "Mem Usage": "3,920 K"
+    },
+    {
+      "Image Name": "services.exe",
+      "PID": "1464",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "9,420 K"
+    },
+    {
+      "Image Name": "LsaIso.exe",
+      "PID": "1484",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "1,048 K"
+    },
+    {
+      "Image Name": "lsass.exe",
+      "PID": "1492",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "17,324 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "1624",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "29,364 K"
+    },
+    {
+      "Image Name": "fontdrvhost.exe",
+      "PID": "1656",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "708 K"
+    },
+    {
+      "Image Name": "WUDFHost.exe",
+      "PID": "1700",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "6,264 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "1752",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "17,116 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "1800",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "5,536 K"
+    },
+    {
+      "Image Name": "WUDFHost.exe",
+      "PID": "1856",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "5,664 K"
+    },
+    {
+      "Image Name": "winlogon.exe",
+      "PID": "1944",
+      "Session Name": "Console",
+      "Session#": "1",
+      "Mem Usage": "6,460 K"
+    },
+    {
+      "Image Name": "fontdrvhost.exe",
+      "PID": "1992",
+      "Session Name": "Console",
+      "Session#": "1",
+      "Mem Usage": "1,060 K"
+    },
+    {
+      "Image Name": "dwm.exe",
+      "PID": "784",
+      "Session Name": "Console",
+      "Session#": "1",
+      "Mem Usage": "95,284 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "1400",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "3,600 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2004",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "1,372 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2052",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "15,292 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2060",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "7,608 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2116",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "2,836 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2156",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "10,212 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2172",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "11,344 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2308",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "5,848 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2388",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "10,128 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2436",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "3,896 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2468",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "3,440 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2536",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "3,144 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2548",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "4,412 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2556",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "1,664 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2744",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "12,160 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2768",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "2,564 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2788",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "7,600 K"
+    },
+    {
+      "Image Name": "IntelCpHDCPSvc.exe",
+      "PID": "2800",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "1,648 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2816",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "4,680 K"
+    },
+    {
+      "Image Name": "svchost.exe",
+      "PID": "2828",
+      "Session Name": "Services",
+      "Session#": "0",
+      "Mem Usage": "4,856 K"
+    }
+  ]
+}
